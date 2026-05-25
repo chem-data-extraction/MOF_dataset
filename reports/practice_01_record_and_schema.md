@@ -1,42 +1,52 @@
-# Practice 1 — Record definition and dataset schema
-
-> Replace template text with your project decisions. Keep this report aligned with `project.json` and `specs/dataset_schema.json`.
+# Practice 1 - Record Definition and Dataset Schema
 
 ## Topic
 
-Aptamer–protein binding dataset (example template).
+MOF-based gas adsorption materials.
 
 ## Scientific task
 
-Collect experimentally reported aptamer–protein binding measurements for comparing affinity values and assay conditions across sources.
+The dataset is designed to support analysis of relationships between metal-organic framework (MOF) structure/composition and gas adsorption performance. The main target variables are gas capacity and, where reported, selectivity under defined experimental conditions.
 
 ## One-record definition
 
-**One record** = one experimentally reported aptamer–protein binding measurement from a specific source (one row in `data/processed/dataset.csv`).
+One record = one gas adsorption measurement for one MOF material under one defined set of experimental conditions.
 
-## Examples of records
+## Dataset fields
+
+The initial schema is stored in `specs/dataset_schema.json`. Required fields define the minimum reproducible adsorption point:
+
+| Field | Type | Required | Role |
+|-------|------|----------|------|
+| `record_id` | string | yes | Stable unique row identifier |
+| `MOF_name` | string | yes | Reported or normalized MOF/material name |
+| `gas_type` | string | yes | Gas formula, e.g. CO2, CH4, N2 |
+| `temperature` | number | yes | Measurement temperature |
+| `pressure` | number | yes | Measurement pressure |
+| `capacity_value` | number | yes | Numeric adsorption capacity |
+| `capacity_unit` | string | yes | Unit as normalized or reported |
+| `source_id` | string | yes | Link to `specs/source_map.json` |
+
+Optional material descriptors include metal node, organic linker, formula, CSD refcode, topology, BET surface area, pore volume, and pore size. Optional experimental/provenance fields capture activation, method, original source, extraction confidence, and notes.
+
+## Valid record examples
 
 | Example | Why it counts |
-|---------|----------------|
-| Kd = 0.5 nM for sequence GGTTGGTGTGGTTGG vs thrombin from Table 2 in Green 2018 | Single measurement + sequence + target + source |
-| IC50 from supplementary table for one aptamer–lysozyme pair | One numeric binding outcome tied to one pair |
+|---------|---------------|
+| UiO-66, CO2, 298 K, 1 bar, capacity = 3.5 mmol/g, source DOI recorded | Single numeric adsorption point with material, gas, pressure, temperature, unit, and provenance |
+| HKUST-1, CH4, 298 K, 65 bar, capacity = 180 cm3(STP)/g, source DOI recorded | Single reproducible experimental adsorption point with pressure, temperature, unit, and provenance |
 
 ## Non-record examples
 
 | Example | Why it is not a record |
 |---------|-------------------------|
-| General review paragraph on SELEX without numeric binding data | No measurement |
-| Full list of 50 sequences without per-sequence affinity | Not one measurement per row (unless split) |
-| Predicted docking score without experimental citation | Out of scope if only experimental data allowed |
+| "UiO-66 showed excellent CO2 adsorption properties." | No numeric capacity/selectivity value |
+| "High CO2 capacity was observed." | No pressure, temperature, unit, or reproducible measurement |
+| A whole figure caption containing an adsorption isotherm | Must be split into one row per digitized pressure-capacity point |
+| A CIF file from CoRE MOF or CSD with no adsorption data | Structural metadata only; can enrich records but is not itself an adsorption measurement |
 
-## Dataset fields
+## Ambiguous cases and decisions
 
-List each schema field and how you will populate it. Update `specs/dataset_schema.json` when fields change.
-
-## Ambiguous cases
-
-Document decisions here, for example:
-
-- Multiple Kd values for the same aptamer under different buffers → separate records or one record with notes?
-- Range reported as “0.1–1 nM” → store null + note, or midpoint?
-- Duplicate sequence in paper and database → deduplication rule in Practice 5.
+- **Single point vs. entire isotherm:** each pressure-capacity point is one record. Points from the same curve share `isotherm_id`.
+- **Multiple gases or mixtures:** pure-gas adsorption uses a single gas formula in `gas_type`; mixture/selectivity records should include the gas pair and composition details in `notes`.
+- **Units:** store the reported or normalized unit in `capacity_unit`; conversions will be documented in the cleaning pipeline.

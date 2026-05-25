@@ -110,14 +110,23 @@ def check_source_id(df: pd.DataFrame, source_map: dict) -> tuple[list[str], list
 
 def check_measurement_value(df: pd.DataFrame) -> list[str]:
     issues = []
-    col = df["measurement_value"]
+    if "capacity_value" in df.columns:
+        value_column = "capacity_value"
+    elif "uptake_value" in df.columns:
+        value_column = "uptake_value"
+    else:
+        value_column = "measurement_value"
+    if value_column not in df.columns:
+        issues.append("Dataset must contain capacity_value, uptake_value, or measurement_value")
+        return issues
+    col = df[value_column]
     for idx, val in col.items():
         if pd.isna(val) or val == "":
             continue
         try:
             float(val)
         except (TypeError, ValueError):
-            issues.append(f"measurement_value not numeric at row {idx}: {val!r}")
+            issues.append(f"{value_column} not numeric at row {idx}: {val!r}")
     return issues
 
 

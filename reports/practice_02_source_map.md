@@ -1,38 +1,51 @@
-# Practice 2 — Source map
-
-> Document how you found sources and maintain `specs/source_map.json` as the machine-readable authority.
+# Practice 2 - Source Map
 
 ## Source search strategy
 
-Describe databases, search engines, keywords, and snowballing (citations, reviews). Example: PubMed + “aptamer thrombin Kd SPR”.
+LLMs were used to search for relevant databases. Scientific literature was searched in Google Scholar using the keyword `metal-organic frameworks (MOFs)`.
 
 ## Source groups
 
-Summarize each group in `source_map.json`:
+The machine-readable source map is maintained in `specs/source_map.json`. The current groups are:
 
-- scientific_papers
-- supplementary_materials
-- databases
-- aggregators
-- github_repositories
-- ml_datasets
+- `scientific_papers`: primary articles reporting experimental adsorption measurements.
+- `databases`: structured adsorption or crystallographic databases.
+- `aggregators`: metadata and search services used to find papers, DOIs, or source metadata.
 
 ## Priority sources
 
-Rank sources by reliability, license, and expected yield. Which will you extract first?
+| Priority | Source | Reason |
+|----------|--------|--------|
+| 1 | NIST ISODB | Highest expected yield for adsorption isotherm points; stores pressure, temperature, gas, capacity values, material identifiers, and DOI provenance |
+| 2 | Primary scientific papers | Authoritative experimental context; useful for extracting capacity values, measurement conditions, and methodological details |
+| 3 | CoRE MOF and CSD | Strong structural metadata, but adsorption capacity values must be linked from other sources |
+| 4 | Aggregators | Useful for DOI metadata, literature discovery, and source cross-checking, but not direct adsorption records |
 
 ## Access conditions
 
-Note paywalls, registration, API keys, and institutional access. Record `access_status`, `access_method`, and `access_date` per source.
-
 ## Expected data types
 
-Tables, figures, HTML tables, CSV dumps, API JSON, etc.
+| Source type | Expected data |
+|-------------|---------------|
+| Adsorption databases | JSON/XML/CSV/API records, isotherm point tables, material registry identifiers, DOI references |
+| Scientific papers | PDF text, tables, figure captions, methods sections, reported capacity/selectivity values |
+| Structural databases | CIF files, CSD refcodes, topology, pore descriptors, surface area/pore volume metadata |
+| Aggregators | DOI metadata, publication year, article titles, citation links, publisher landing pages |
 
 ## Expected conflicts and overlaps
 
-Example: database Kd may disagree with primary paper — which wins? Document resolution rules.
+The same measurement may appear in a primary paper and NIST ISODB. The initial conflict policy is:
+
+- prefer primary papers for experimental values when exact conditions are available;
+- prefer NIST ISODB for machine-readable isotherm points when it clearly cites the same DOI and extraction method;
+- retain source-specific units and values until cleaning, then document conversions;
+- normalize MOF aliases using registry IDs, CSD refcodes, or explicit notes.
+
+Common expected conflicts include:
+
+- unit mismatch: `mmol/g`, `cm3(STP)/g`, `wt%`, `mol/kg`;
+- pressure basis mismatch: bar vs Pa vs atm; absolute vs relative pressure;
+- MOF aliasing: HKUST-1, CuBTC, MOF-199, Basolite C300;
+- rounded temperatures and pressures: 298 K vs 298.15 K; 1 bar vs 1 atm.
 
 ## Coverage gaps
-
-Targets, assay types, or years missing from your map. Plan follow-up searches or justify exclusions.
