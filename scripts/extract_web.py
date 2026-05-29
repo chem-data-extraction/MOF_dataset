@@ -18,12 +18,28 @@ from collections import Counter
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "specs/web_extraction_manifest.json"
-SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
 LOG_PATH = ROOT / "data/extracted/extraction_log.jsonl"
 WEB_CSV = ROOT / "data/extracted/web_extracted_records.csv"
 PROBE_SUMMARY = ROOT / "data/extracted/web_probe_summary.json"
-WEB_EXTRA_COLUMNS = ["page_id", "extraction_notes"]
 NIST_RAW_BASE = "https://raw.githubusercontent.com/NIST-ISODB/isodb-library/master/Library"
+WEB_MEASUREMENT_COLUMNS = [
+    "MOF_name",
+    "gas_type",
+    "temperature",
+    "temperature_unit",
+    "pressure",
+    "pressure_unit",
+    "capacity_value",
+    "capacity_unit",
+    "isotherm_id",
+    "DOI",
+    "publication_year",
+    "source_id",
+    "source_url",
+    "source_location",
+    "extraction_method",
+    "notes",
+]
 
 
 def append_log(entry: dict) -> None:
@@ -32,15 +48,9 @@ def append_log(entry: dict) -> None:
         f.write(json.dumps(entry) + "\n")
 
 
-def schema_columns() -> list[str]:
-    with SCHEMA_PATH.open(encoding="utf-8") as f:
-        schema = json.load(f)
-    return [field["name"] for field in schema["fields"]]
-
-
 def ensure_output_header() -> None:
     WEB_CSV.parent.mkdir(parents=True, exist_ok=True)
-    WEB_CSV.write_text(",".join(schema_columns() + WEB_EXTRA_COLUMNS) + "\n", encoding="utf-8")
+    WEB_CSV.write_text(",".join(WEB_MEASUREMENT_COLUMNS) + "\n", encoding="utf-8")
 
 
 def fetch_url(url: str, path: Path) -> dict:

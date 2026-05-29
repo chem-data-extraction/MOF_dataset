@@ -45,6 +45,34 @@ PDF_MEASUREMENT_COLUMNS = [
     "extraction_method",
     "notes",
 ]
+WEB_MEASUREMENT_COLUMNS = [
+    "MOF_name",
+    "gas_type",
+    "temperature",
+    "temperature_unit",
+    "pressure",
+    "pressure_unit",
+    "capacity_value",
+    "capacity_unit",
+    "isotherm_id",
+    "DOI",
+    "publication_year",
+    "source_id",
+    "source_url",
+    "source_location",
+    "extraction_method",
+    "notes",
+]
+WEB_MATERIAL_EXCLUDED_COLUMNS = {
+    "metal_node",
+    "organic_linker",
+    "pore_volume",
+    "pore_volume_unit",
+    "molecular_weight",
+    "molecular_weight_unit",
+    "topology",
+    "CSD_refcode",
+}
 
 MEASUREMENT_INPUTS = [
     ROOT / "data/extracted/pdf_parse_preview/uio66_candidate_records.csv",
@@ -302,7 +330,7 @@ def material_from_material_preview(row: dict[str, str], path: Path) -> dict[str,
         name = first_value(row, "name")
         out.update(
             {
-                "mof_id": f"mofxdb_{safe_slug(name)}",
+                "mof_id": f"mofxdb_{name}",
                 "MOF_name": name,
                 "chemical_formula": first_value(row, "cif_atom_count_formula_preview"),
                 "metal_node": first_value(row, "metal_node_preview"),
@@ -345,6 +373,7 @@ def main() -> None:
     measurement_columns = schema_columns(MEASUREMENT_SCHEMA)
     material_columns = schema_columns(MATERIAL_SCHEMA)
     pdf_material_columns = [col for col in material_columns if col not in PDF_MATERIAL_EXCLUDED_COLUMNS]
+    web_material_columns = [col for col in material_columns if col not in WEB_MATERIAL_EXCLUDED_COLUMNS]
 
     measurement_rows = []
     pdf_measurement_rows = []
@@ -398,8 +427,8 @@ def main() -> None:
     write_csv(MATERIAL_OUTPUT, list(material_by_id.values()), material_columns)
     write_csv(PDF_MEASUREMENT_OUTPUT, pdf_measurement_rows, PDF_MEASUREMENT_COLUMNS)
     write_csv(PDF_MATERIAL_OUTPUT, pdf_material_rows, pdf_material_columns)
-    write_csv(WEB_MEASUREMENT_OUTPUT, web_measurement_rows, measurement_columns)
-    write_csv(WEB_MATERIAL_OUTPUT, list(web_material_by_id.values()), material_columns)
+    write_csv(WEB_MEASUREMENT_OUTPUT, web_measurement_rows, WEB_MEASUREMENT_COLUMNS)
+    write_csv(WEB_MATERIAL_OUTPUT, list(web_material_by_id.values()), web_material_columns)
 
     print(f"Wrote {len(measurement_rows)} rows to {MEASUREMENT_OUTPUT.relative_to(ROOT)}")
     print(f"Wrote {len(material_by_id)} rows to {MATERIAL_OUTPUT.relative_to(ROOT)}")

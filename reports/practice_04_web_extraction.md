@@ -1,115 +1,94 @@
 # Practice 4 - Web Extraction
 
-Practice 4 documents the first web/API extraction probe for two MOF-relevant databases:
-
-- MOFX-DB: `https://mof.tech.northwestern.edu/`
-- NIST ISODB: `https://adsorption.nist.gov/isodb/index.php#home`
-
-The goal of this practice is not to mass-download records yet, but to determine whether these web sources can support the schema and what parsing strategy is needed. Web parsing outputs are kept as a web-only dataset in `data/extracted/web_parsed_records.csv` and `data/extracted/web_parsed_materials.csv`; they are not merged with PDF outputs in Practice 4.
+> Parsed measurement output: `data/extracted/web_parsed_records.csv`  
+> Parsed material output: `data/extracted/web_parsed_materials.csv`  
+> Manifest: `specs/web_extraction_manifest.json`
 
 ## Selected Web Sources
 
-| source_id | page_id | URL | Probe result |
-|-----------|---------|-----|--------------|
-| `db_mofxdb` | `mofxdb_home` | `https://mof.tech.northwestern.edu/` | JSON API probe works through `/mofs.json?page=1` |
-| `db_nist_isodb` | `nist_isodb_home` | `https://adsorption.nist.gov/isodb/index.php#home` | Web snapshot works; official GitHub API mirror provides parseable JSON |
+| source_id | page_id | URL | Records |
+|---|---|---|---|
+| `db_mofxdb` | `mofxdb_page1_first10_with_isotherms` | `https://mof.tech.northwestern.edu/mofs.json?page=1` | 210 measurement points, 10 materials |
+| `db_nist_isodb` | `nist_zr_fum_hydrogen_storage_example` | `https://github.com/NIST-ISODB/isodb-library` | 119 measurement points, 3 materials |
 
-## Why These Sites Were Selected
+## Why These Sources Were Selected
 
-MOFX-DB was selected because it exposes MOF structures, pore descriptors, MOF identifiers, and isotherm metadata through a JSON endpoint. It is useful for testing the material table design and for discovering how MOF identifiers, pore descriptors, gases, pressure, temperature, and capacity values may appear in structured web data.
+MOFX-DB was selected because individual MOF records expose material descriptors, MOF identifiers, and linked isotherm JSON files. It is useful for testing how web data can be separated into a material table and an adsorption measurement table.
 
-NIST ISODB was selected because it is the most relevant target for experimental adsorption isotherms. It is expected to provide adsorbent names, adsorbates, pressure, temperature, capacity values, units, and literature provenance. The current probe downloaded the web app shell; additional endpoint mapping is needed before reliable record extraction.
+NIST ISODB was selected because it is a domain-specific adsorption isotherm database with DOI-linked provenance. The website itself behaves as a web application, so the parser uses the official GitHub API mirror, which contains the same JSON output in a stable file structure. In this project, NIST ISODB is treated primarily as a source of isotherm points and source provenance, not as the main source of MOF structural descriptors.
 
-NIST also provides an official GitHub mirror of the API output at `https://github.com/NIST-ISODB/isodb-library`. This mirror is organized as static JSON files for adsorbates, adsorbents, bibliography records, and isotherms. It is therefore a practical extraction route when the web application endpoint itself returns only the app shell.
+The NIST strategy is still useful: isotherm JSON files are easy to parse and already contain pressure, temperature, adsorption capacity, units, adsorbate information, DOI, and figure/source location. However, MOF structure information is often limited to adsorbent names or hashkeys. A future project version should enrich NIST material rows by using the DOI to find the source paper or by linking the adsorbent to structural databases such as CoRE MOF or CSD.
 
-## Page Structure
+## Page And API Structure
 
-MOFX-DB has an API-like structure. The probe request `GET https://mof.tech.northwestern.edu/mofs.json?page=1` returned JSON with pagination metadata and MOF result objects. A result object may include MOF name, CIF text, `lcd`, `pld`, MOFid/MOFkey, database name, elements, isotherm links, isotherm data, pressure units, adsorption units, adsorbate metadata, temperature, DOI, and force-field metadata.
-
-NIST ISODB behaves as a web application. The requested `/isodb/api` route returned an HTML page with the NIST disclaimer and app shell rather than direct JSON records. The GitHub API mirror solves this for parsing because it exposes the same API JSON as repository files under `Library/`.
+| Source | Parsed location | Relevant part |
+|---|---|---|
+| MOFX-DB | `/mofs.json?page=1` | Paginated MOF search results with `id`, `name`, pore descriptors, and isotherm links |
+| MOFX-DB | `/mofs/{mofdb_id}.json` | MOF detail JSON with CIF text, `lcd`, `pld`, surface area, MOFid, MOFkey, elements |
+| MOFX-DB | `/isotherms/{isotherm_id}.json` | Isotherm JSON with adsorbates, temperature, pressure points, capacity values, DOI |
+| NIST ISODB | `Library/Bibliography/{doi_stub}.json` | Article metadata and linked adsorbent, adsorbate, and isotherm files |
+| NIST ISODB | `Library/{doi_stub}/{isotherm_file}.json` | Isotherm JSON with pressure, temperature, adsorption values, units, category, DOI |
+| NIST ISODB | `Library/Adsorbents/{hashkey}.json` | Material metadata such as adsorbent name, synonyms, formula when available |
+| NIST ISODB | `Library/Adsorbates/{InChIKey}.json` | Gas metadata used to normalize gas formula/name |
 
 ## Extraction Methods
 
-The current parser in `scripts/extract_web.py` performs small source probes only:
+| Source | Tool | Method | Scope |
+|---|---|---|---|
+| MOFX-DB | `urllib.request` + `json` | Download first API page, parse first 10 MOFs with linked isotherms, write point-level rows | Preview batch |
+| NIST ISODB | `urllib.request` + `json` | Download one DOI directory from the official GitHub mirror and parse linked JSON files | Preview batch |
+| Both | `scripts/build_preview_tables.py` | Split parsed data into measurement and material CSV files | Web-only parsed datasets |
+| NIST DOI enrichment | Planned extension | Use DOI metadata to search for open PDFs or structural sources, then enrich material descriptors when reliable data are available | Future work |
 
-1. Read source definitions from `specs/web_extraction_manifest.json`.
-2. Download web snapshots into `data/raw/web/`.
-3. Download API probe responses when `api_probe_url` is available.
-4. Download selected MOFX-DB detail JSON records and linked isotherm JSON files for preview extraction.
-5. Download selected NIST GitHub mirror bibliography, adsorbent, adsorbate, and isotherm JSON files.
-6. Write a compact probe summary to `data/extracted/web_probe_summary.json`.
-7. Collect parser outputs into the web-only preview dataset `data/extracted/web_parsed_records.csv` and `data/extracted/web_parsed_materials.csv`.
-8. Keep `data/extracted/web_extracted_records.csv` header-only until record-level extraction is verified.
+## Extracted Field Mapping
 
-This conservative design avoids mixing unverified simulated/computational records with the experimental PDF-derived records.
+Measurement table: `data/extracted/web_parsed_records.csv`
 
-## MOFX-DB Detail Preview
+| Output field | MOFX-DB source | NIST ISODB source |
+|---|---|---|
+| `MOF_name` | MOF detail `name` | isotherm/adsorbent `name` |
+| `gas_type` | `adsorbates[].formula` or species formula | adsorbate metadata `formula` |
+| `temperature`, `temperature_unit` | isotherm `temperature`, fixed `K` | isotherm `temperature`, fixed `K` |
+| `pressure`, `pressure_unit` | `isotherm_data[].pressure`, `pressureUnits` | `isotherm_data[].pressure`, `pressureUnits` |
+| `capacity_value`, `capacity_unit` | species adsorption or total adsorption, `adsorptionUnits` | species adsorption or total adsorption, `adsorptionUnits` |
+| `isotherm_id` | isotherm `id` | isotherm filename |
+| `DOI`, `publication_year` | isotherm `DOI`; year not available in preview | bibliography `DOI`, `year` |
+| `source_url`, `source_location` | isotherm JSON URL; source location usually absent | raw GitHub JSON URL; `articleSource` |
+| `extraction_method`, `notes` | `web_api_json`; category/unit caveats | `github_mirror_json`; category/source notes |
 
-A small MOFX-DB batch preview was implemented for the first 10 MOF records with linked isotherms on page 1 of the API response. The parser downloads each MOF detail JSON, follows its `isotherm_url` links, and converts the plotted isotherm points into a tabular preview.
+Material table: `data/extracted/web_parsed_materials.csv`
 
-Preview output:
-
-- `data/extracted/web_parse_preview/mofxdb_batch/materials_preview.csv` - 10 MOF material rows.
-- `data/extracted/web_parse_preview/mofxdb_batch/isotherm_points_preview.csv` - 210 isotherm point rows.
-
-The parsed preview includes `hMOF-6`, `hMOF-0`, `hMOF-7`, `hMOF-5`, `hMOF-3`, `hMOF-4`, `hMOF-1`, `hMOF-2`, `hMOF-8`, and `hMOF-9`. Gases observed in this preview are `CO2`, `N2`, `CH4`, `H2`, `Xe`, and `Kr`. Units observed include `mol/kg`, `g/l`, and `cm3(STP)/cm3`.
-
-These rows are not promoted to the final dataset yet because MOFX-DB source terms and experimental/computational origin still need final review.
-
-## NIST ISODB GitHub Mirror Preview
-
-A first NIST mirror preview was implemented using the official repository `https://github.com/NIST-ISODB/isodb-library`. The parser downloads one DOI directory from the mirror, plus the linked bibliography, adsorbent, and adsorbate metadata files.
-
-Preview DOI:
-
-- `10.1016/j.ijhydene.2015.06.109` - "Hydrogen storage in Zr-fumarate MOF"
-
-Preview output:
-
-- `data/extracted/web_parse_preview/nist_isodb_mirror/materials_preview.csv` - 3 adsorbent material rows.
-- `data/extracted/web_parse_preview/nist_isodb_mirror/isotherm_points_preview.csv` - 119 isotherm point rows from 5 isotherm JSON files.
-
-The parsed rows contain hydrogen adsorption data for Zr-fum MOF variants at 77 K. Units observed in this preview are `cm3(STP)/g` and `wt%`, with pressure in `bar`. The NIST JSON explicitly marks the sampled records as `category=exp`, which makes this source especially useful for the experimental-only dataset design.
-
-## Extracted Fields
-
-No accepted web records were written yet. Candidate fields observed in the MOFX-DB JSON include:
-
-| Web field | Candidate dataset field |
-|-----------|-------------------------|
-| `name`, `mofid`, `mofkey` | `mof_id`, `MOF_name`, `notes` |
-| `lcd`, `pld` | `pore_size`, `pore_size_unit` |
-| `elements`, `cif` | `chemical_formula`, `metal_node`, `organic_linker` after additional parsing |
-| `adsorbates[].formula` | `gas_type` |
-| `temperature` | `temperature`, `temperature_unit` |
-| `isotherm_data[].pressure` | `pressure`, `pressure_unit` |
-| `isotherm_data[].total_adsorption` | `capacity_value`, `capacity_unit` |
-| `DOI`, `doi_url` | `DOI`, `source_url` |
+| Output field | MOFX-DB source | NIST ISODB source |
+|---|---|---|
+| `mof_id`, `MOF_name` | internal `mofxdb_{name}`, MOF `name` | NIST hashkey, adsorbent `name` |
+| `chemical_formula` | CIF-derived atom count preview | adsorbent `formula` when available |
+| `pore_size`, `pore_size_unit` | `pld`, angstrom | not available in current preview |
+| `surface_area_BET`, `surface_area_BET_unit` | `surface_area_m2g`, `m2/g` | not available in current preview |
+| `MOFid`, `MOFkey` | parsed from MOFX-DB identifiers | not available in current preview |
+| `source_material_id`, `source_url` | MOFX-DB id and material JSON URL | NIST hashkey and source JSON URL |
 
 ## Extraction Problems
 
-- MOFX-DB contains structured records, but many entries include simulation metadata and force-field information; experimental-only filtering must be explicit.
-- Some MOFX-DB fields have ambiguous units or unexpected unit labels, so unit verification is required before accepting rows.
-- NIST ISODB did not expose direct JSON records through the first probed web URL, but the official GitHub mirror provides parseable JSON files.
-- NIST adsorbent metadata may have missing chemical formula or structural descriptors, so it should be joined with external material information before final publication.
-- MOF identity cannot rely only on a display name. MOFid, MOFkey, CIF-derived formula, pore descriptors, and source metadata should be used for identity resolution.
-- Bulk downloads should wait until license, source terms, and accepted-use constraints are reviewed.
+| Problem | Source | Current resolution |
+|---|---|---|
+| Web application route does not directly expose NIST JSON | NIST ISODB website | Use the official GitHub API mirror |
+| MOFX-DB includes category and force-field metadata that may indicate computational origin | MOFX-DB | Keep records as parsed preview until origin is verified |
+| NIST material JSON contains only adsorbent names/hashkeys for the sampled Zr-fum records | NIST ISODB | Store the DOI and use the source article for later material enrichment |
+| DOI-linked PDFs are not guaranteed to be openly available | NIST DOI enrichment | Treat DOI-to-PDF lookup as an optional future enrichment step, not as a required parsing dependency |
+| MOF identity is not guaranteed by display name alone | Both | Preserve source-specific identifiers such as MOFid, MOFkey, MOFX-DB id, and NIST hashkey in the material table |
+| Units differ across sources | Both | Store unit columns next to every numeric measurement |
 
 ## Output Files
 
-- `specs/web_extraction_manifest.json`
-- `data/extracted/web_extracted_records.csv` - header-only, no accepted web records yet.
-- `data/extracted/web_parsed_records.csv` - web-only parsed measurement preview dataset.
-- `data/extracted/web_parsed_materials.csv` - web-only parsed material preview dataset.
-- `data/extracted/web_probe_summary.json`
-- `data/extracted/web_parse_preview/mofxdb_batch/materials_preview.csv`
-- `data/extracted/web_parse_preview/mofxdb_batch/isotherm_points_preview.csv`
-- `data/extracted/web_parse_preview/nist_isodb_mirror/materials_preview.csv`
-- `data/extracted/web_parse_preview/nist_isodb_mirror/isotherm_points_preview.csv`
-- `data/raw/web/mofxdb_home.html`
-- `data/raw/web/mofxdb_mofs_page1.json`
-- `data/raw/web/mofxdb_batch/`
-- `data/raw/web/nist_isodb_mirror/`
-- `data/raw/web/nist_isodb_home.html`
-- `data/raw/web/nist_isodb_api_probe.html`
-- `data/extracted/extraction_log.jsonl`
+| File | Rows | Notes |
+|---|---:|---|
+| `data/extracted/web_parsed_records.csv` | 329 | Clean web measurement table; 210 MOFX-DB + 119 NIST rows |
+| `data/extracted/web_parsed_materials.csv` | 13 | Clean web material table; 10 MOFX-DB + 3 NIST rows |
+| `data/extracted/web_extracted_records.csv` | 0 | Header-only accepted web dataset |
+| `data/extracted/web_parse_preview/mofxdb_batch/isotherm_points_preview.csv` | 210 | Raw MOFX-DB point-level preview |
+| `data/extracted/web_parse_preview/mofxdb_batch/materials_preview.csv` | 10 | Raw MOFX-DB material preview |
+| `data/extracted/web_parse_preview/nist_isodb_mirror/isotherm_points_preview.csv` | 119 | Raw NIST point-level preview |
+| `data/extracted/web_parse_preview/nist_isodb_mirror/materials_preview.csv` | 3 | Raw NIST material preview |
+| `data/extracted/web_probe_summary.json` | - | Probe summary for source snapshots and parsed batches |
+
+Observed gases in the web measurement preview: `CO2`, `N2`, `CH4`, `H2`, `Xe`, and `Kr`.
