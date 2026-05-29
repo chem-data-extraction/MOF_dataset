@@ -14,20 +14,34 @@ One record = one gas adsorption measurement for one MOF material under one defin
 
 ## Dataset fields
 
-The initial schema is stored in `specs/dataset_schema.json`. Required fields define the minimum reproducible adsorption point:
+The initial schema is stored in `specs/dataset_schema.json`. Required fields define both the adsorption measurement and the core MOF description needed for structure-property analysis:
 
 | Field | Type | Required | Role |
 |-------|------|----------|------|
 | `record_id` | string | yes | Stable unique row identifier |
+| `mof_id` | string | yes | Internal identifier for linking repeated measurements of the same MOF |
 | `MOF_name` | string | yes | Reported or normalized MOF/material name |
+| `chemical_formula` | string | yes | Reported chemical formula |
+| `metal_node` | string | yes | Metal ion, metal cluster, or inorganic building unit |
+| `organic_linker` | string | yes | Organic linker or ligand |
+| `pore_size` | number | yes | Representative pore size |
+| `pore_size_unit` | string | yes | Unit for `pore_size` |
 | `gas_type` | string | yes | Gas formula, e.g. CO2, CH4, N2 |
 | `temperature` | number | yes | Measurement temperature |
+| `temperature_unit` | string | yes | Unit for `temperature` |
 | `pressure` | number | yes | Measurement pressure |
+| `pressure_unit` | string | yes | Unit for `pressure` |
 | `capacity_value` | number | yes | Numeric adsorption capacity |
 | `capacity_unit` | string | yes | Unit as normalized or reported |
 | `source_id` | string | yes | Link to `specs/source_map.json` |
 
-Optional material descriptors include metal node, organic linker, formula, CSD refcode, topology, BET surface area, pore volume, and pore size. Optional experimental/provenance fields capture activation, method, original source, extraction confidence, and notes.
+Optional material descriptors include CSD refcode, topology, BET surface area, pore volume, and molecular weight. Every numerical descriptor has a corresponding unit column, for example `surface_area_BET` + `surface_area_BET_unit` and `pore_volume` + `pore_volume_unit`. Optional experimental/provenance fields capture activation, method, original source, extraction confidence, and notes.
+
+## MOF material table option
+
+If many adsorption records refer to the same MOF at different temperatures and pressures, material descriptors can be normalized into a separate MOF materials table. In that design, the main adsorption table would keep `mof_id`, gas, conditions, capacity, and source fields, while a separate table such as `mof_materials.csv` would store one row per MOF with `mof_id`, `MOF_name`, `chemical_formula`, `metal_node`, `organic_linker`, `pore_size`, surface area, pore volume, molecular weight, topology, and structural identifiers.
+
+For the current schema, the material descriptors remain in the main table because they are central to the scientific task and make the first extraction stage easier to validate.
 
 ## Valid record examples
 
@@ -50,3 +64,4 @@ Optional material descriptors include metal node, organic linker, formula, CSD r
 - **Single point vs. entire isotherm:** each pressure-capacity point is one record. Points from the same curve share `isotherm_id`.
 - **Multiple gases or mixtures:** pure-gas adsorption uses a single gas formula in `gas_type`; mixture/selectivity records should include the gas pair and composition details in `notes`.
 - **Units:** store the reported or normalized unit in `capacity_unit`; conversions will be documented in the cleaning pipeline.
+- **MOF identity:** a MOF name alone is not sufficient to define one material. A record should be linked to a material definition using at least a stable `mof_id`, reported `MOF_name`, chemical formula, metal node, organic linker, and pore size. When available, CSD refcode, topology, synthesis/activation context, and structural database identifiers should be used to distinguish materials with similar names.

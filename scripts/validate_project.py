@@ -108,16 +108,11 @@ def check_source_id(df: pd.DataFrame, source_map: dict) -> tuple[list[str], list
     return errors, warnings
 
 
-def check_measurement_value(df: pd.DataFrame) -> list[str]:
+def check_capacity_value(df: pd.DataFrame) -> list[str]:
     issues = []
-    if "capacity_value" in df.columns:
-        value_column = "capacity_value"
-    elif "uptake_value" in df.columns:
-        value_column = "uptake_value"
-    else:
-        value_column = "measurement_value"
+    value_column = "capacity_value"
     if value_column not in df.columns:
-        issues.append("Dataset must contain capacity_value, uptake_value, or measurement_value")
+        issues.append("Dataset must contain capacity_value")
         return issues
     col = df[value_column]
     for idx, val in col.items():
@@ -159,7 +154,7 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str]]:
 
     errors.extend(check_dataset_columns(df, schema))
     errors.extend(check_record_id(df))
-    errors.extend(check_measurement_value(df))
+    errors.extend(check_capacity_value(df))
 
     src_errors, src_warnings = check_source_id(df, source_map)
     errors.extend(src_errors)

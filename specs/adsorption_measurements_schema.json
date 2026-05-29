@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.2.0",
+  "dataset_title": "MOF adsorption measurements table",
+  "record_unit": "One experimental gas adsorption measurement point under one defined set of conditions.",
+  "design_note": "This table keeps only fields that describe the measurement itself or its provenance. MOF structural descriptors are stored in specs/mof_materials_schema.json and linked by mof_id.",
+  "fields": [
+    {"name": "record_id", "type": "string", "required": true, "description": "Stable unique measurement identifier."},
+    {"name": "mof_id", "type": "string", "required": true, "description": "Foreign key to data/processed/mof_materials.csv."},
+    {"name": "gas_type", "type": "string", "required": true, "description": "Adsorbate gas formula, e.g. CO2, H2, CH4, Xe, Kr."},
+    {"name": "gas_name", "type": "string", "required": false, "description": "Human-readable gas name when available."},
+    {"name": "temperature", "type": "number", "required": true, "description": "Measurement temperature."},
+    {"name": "temperature_unit", "type": "string", "required": true, "description": "Unit for temperature."},
+    {"name": "pressure", "type": "number|string", "required": true, "description": "Measurement pressure or pressure range for working-capacity records."},
+    {"name": "pressure_unit", "type": "string", "required": true, "description": "Unit for pressure."},
+    {"name": "capacity_value", "type": "number", "required": true, "description": "Adsorption capacity or reported adsorption result value."},
+    {"name": "capacity_unit", "type": "string", "required": true, "description": "Unit for capacity_value."},
+    {"name": "measurement_type", "type": "string", "required": false, "description": "capacity, working_capacity, selectivity, or other explicitly reported result type."},
+    {"name": "isotherm_id", "type": "string", "required": false, "description": "Identifier grouping points from one isotherm or graph."},
+    {"name": "DOI", "type": "string", "required": false, "description": "Source publication DOI."},
+    {"name": "publication_year", "type": "integer", "required": false, "description": "Publication year of the source."},
+    {"name": "source_id", "type": "string", "required": true, "description": "Source identifier from specs/source_map.json."},
+    {"name": "source_type", "type": "string", "required": false, "description": "scientific_paper, database_api, github_api_mirror, or other source category."},
+    {"name": "source_database", "type": "string", "required": false, "description": "Database name when applicable, e.g. NIST ISODB or MOFX-DB."},
+    {"name": "source_url", "type": "string", "required": false, "description": "URL for the source record, JSON file, DOI page, PDF, table, or figure."},
+    {"name": "source_location", "type": "string", "required": false, "description": "Generic locator inside the source, e.g. page 6 Figure 6, Table 1, articleSource=Figure 2a."},
+    {"name": "extraction_method", "type": "string", "required": false, "description": "pdf_table, digitized_figure, web_api_json, github_mirror_json, or manual_review."},
+    {"name": "extraction_confidence", "type": "string", "required": false, "description": "high, medium, low, or unknown."},
+    {"name": "notes", "type": "string", "required": false, "description": "Measurement caveats, mixture composition, unit caveats, or conflict notes."}
+  ]
+}

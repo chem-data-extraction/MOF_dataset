@@ -1,0 +1,24 @@
+{
+  "source_id": "db_mofxdb",
+  "mofdb_id": 15341,
+  "name": "hMOF-5",
+  "url": "https://mof.tech.northwestern.edu/mofs/15341.json",
+  "lcd": 3.25,
+  "pld": 2.75,
+  "surface_area_m2g": 7.4,
+  "surface_area_m2cm3": 15.5,
+  "void_fraction": 0.169003,
+  "mofid": "[O-]C(=O)c1cc(F)c(c(c1F)F)C(=O)[O-].[O-]C(=O)c1cc(F)c(cc1F)C(=O)[O-].[O-]C(=O)c1ccc(c(c1)F)C(=O)[O-].[Zn][O]([Zn])([Zn])[Zn] MOFid-v1.pcu.cat2",
+  "mofkey": "Zn.LWKOWFVDUSZDRA.SEOCHRNHZMPVAE.YUWKPDBHJFNMAD.MOFkey-v1.pcu",
+  "database": "hMOF",
+  "elements": [
+    "Zn",
+    "O",
+    "C",
+    "H",
+    "F"
+  ],
+  "cif_atom_count_formula_preview": "C72 F18 H18 O39 Zn12",
+  "metal_node_preview": "Zn",
+  "isotherm_count": 6
+}

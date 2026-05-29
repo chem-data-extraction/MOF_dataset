@@ -1,0 +1,139 @@
+figure,pdf_id,MOF_name,gas_type,temperature,temperature_unit,pressure,pressure_unit,capacity_value,capacity_unit,digitization_method,extraction_confidence,notes
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.1,atm,1.4,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.2,atm,2.5,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.3,atm,3.4,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.4,atm,4.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.5,atm,4.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.6,atm,5.3,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.7,atm,5.7,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.8,atm,6.0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,0.9,atm,6.2,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,CO2,273,K,1.0,atm,6.39,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.1,atm,1.7,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.2,atm,2.9,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.3,atm,3.9,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.4,atm,4.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.5,atm,5.5,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.6,atm,6.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.7,atm,6.6,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.8,atm,7.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,0.9,atm,7.6,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-3,CO2,273,K,1.0,atm,7.94,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.1,atm,1.9,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.2,atm,3.0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.3,atm,4.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.4,atm,4.9,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.5,atm,5.6,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.6,atm,6.2,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.7,atm,6.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.8,atm,7.3,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.9,atm,7.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,1.0,atm,8.26,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.1,atm,1.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.2,atm,1.5,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.3,atm,1.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.4,atm,2.0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.5,atm,2.25,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.6,atm,2.4,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.7,atm,2.55,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.8,atm,2.7,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,0.9,atm,2.85,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,CG-15,CO2,273,K,1.0,atm,2.97,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.1,atm,0.02,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.2,atm,0.03,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.3,atm,0.04,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.4,atm,0.05,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.5,atm,0.05,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.6,atm,0.06,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.7,atm,0.06,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.8,atm,0.06,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,0.9,atm,0.07,mmol/g,manual_visual_from_crop,low,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig6_CO2_273K,nanosized_cu_mofs_go_gas_storage,GO,CO2,273,K,1.0,atm,0.07,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization; 1 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,0,atm,0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,1,atm,1.5,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,2,atm,2.0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,5,atm,2.45,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,10,atm,2.7,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,20,atm,2.85,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,30,atm,2.85,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,Cu-BTC,H2,77,K,42,atm,2.81,wt%,manual_visual_from_crop,medium,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,0,atm,0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,1,atm,1.7,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,2,atm,2.25,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,5,atm,2.7,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,10,atm,2.95,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,20,atm,3.1,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,30,atm,3.1,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-3,H2,77,K,42,atm,3.05,wt%,manual_visual_from_crop,medium,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,0,atm,0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,1,atm,2.0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,2,atm,2.55,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,5,atm,3.05,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,10,atm,3.35,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,20,atm,3.55,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,30,atm,3.6,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-9,H2,77,K,42,atm,3.58,wt%,manual_visual_from_crop,medium,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,0,atm,0,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,1,atm,0.75,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,2,atm,0.95,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,5,atm,1.15,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,10,atm,1.25,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,20,atm,1.35,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,30,atm,1.4,wt%,manual_visual_from_crop,low,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig7_H2_77K,nanosized_cu_mofs_go_gas_storage,CG-15,H2,77,K,42,atm,1.42,wt%,manual_visual_from_crop,medium,Approximate visual digitization; 42 atm values anchored to Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.1,atm,1.5,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.2,atm,2.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.3,atm,3.9,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.4,atm,4.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.5,atm,5.5,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.6,atm,6.2,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.7,atm,6.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.8,atm,7.3,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,0.9,atm,7.8,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CO2,273,K,1.0,atm,8.26,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.1,atm,0.25,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.2,atm,0.35,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.3,atm,0.48,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.4,atm,0.62,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.5,atm,0.75,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.6,atm,0.88,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.7,atm,1.0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.8,atm,1.1,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,0.9,atm,1.2,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,CH4,273,K,1.0,atm,1.3,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0,atm,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.1,atm,0.05,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.2,atm,0.09,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.3,atm,0.12,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.4,atm,0.16,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.5,atm,0.2,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.6,atm,0.24,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.7,atm,0.28,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.8,atm,0.32,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,0.9,atm,0.36,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+Cu-MOF_GO_Fig8_CG9_273K,nanosized_cu_mofs_go_gas_storage,CG-9,N2,273,K,1.0,atm,0.4,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from Fig. 8; CO2 endpoint consistent with Table 1.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,0,bar,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,5,bar,20,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,10,bar,30,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,20,bar,42,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,30,bar,50,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,40,bar,54,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,60,bar,60,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,80,bar,62,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_total_adsorption,H2,77,K,100,bar,65.7,mmol/g,manual_visual_from_crop,medium,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,0,bar,0,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,5,bar,18,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,10,bar,25,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,20,bar,32,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,30,bar,35,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,40,bar,36,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,60,bar,36,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,80,bar,34,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.
+NPF-200_Fig3b_H2_77K,nihms_1670563,NPF-200_excess_adsorption,H2,77,K,100,bar,32,mmol/g,manual_visual_from_crop,low,Approximate visual digitization from small Fig. 3b; total 100 bar value anchored to text.

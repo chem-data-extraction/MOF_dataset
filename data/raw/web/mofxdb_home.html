@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Nathaniel Tracy-Amoroso n8ta.com">
+  <meta name="description" content="A database of MOFs and simulated Isotherms">
+  <meta name="keywords" content="MOF,snurr,Northwestern,isotherm,nitrogen,database,chemistry,NU,zeolites">
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://mof.tech.northwestern.edu/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MofDB: A database of MOFs/Xeolites">
+  <meta property="og:description" content="Millions of simulated isotherms for mofs and xeolites with easy api access">
+  <meta property="og:image" content="https://mof.tech.northwestern.edu/assets/mof_image-bbe1d8783859d2e660e859e03796c1a57c7a29faa4fab5a1d45602642d843f4e.jpg">
+
+
+  <title>
+    Metal Organic Framework Database |  Mofs
+  </title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="8YMY8uocA7EXidExZI7DQstlWmyHXlGhUD9aXMBJvZ02LCXjS7v5_yrvtJvq-UpxPVgfoTvuhuWb1-9W_VGouA" />
+  <meta name="csp-nonce" />
+  <link rel="stylesheet" href="/assets/application-385c6f390c564ffbd18decbdd3cc4dc4963e77d9fcba32c9a9d17b01e8595192.css" media="all" integrity="sha256-Z8EpHBfFWG+gW+J+Lt2olX54jFAjVlMZnV54Ol8kD5g=" />
+  <script src="/assets/application-de275d402176c24409750ec76ed1602eb7df9b9a5058a384d351e43303699f86.js" integrity="sha256-RNwqFFQYrYK8xtZeOl1SEzoBfvoyT4ThGN8lYwEhYHw="></script>
+  <link rel="preload" href="https://mof.tech.northwestern.edu/assets/plots_bundle-9c677b7a5817714a794dd88c9fca2ba943331e01b435595ef2947c3d7bd7e16f.js" as="script"/>
+  <link rel="preload" href="https://mof.tech.northwestern.edu/assets/api_bundle-848dd587748f76e4d53f242ae6a5ac68a886862986e8d5a23e58d742af0e12d1.js" as="script"/>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111016820-6"></script>
+</head>
+
+<body data-rails_env="production">
+
+<nav id="nav">
+  <div id="nav_txt">
+    <h1>
+      <a href="/"><span id="mof">MOFX</span><span id="db">DB</span></a>
+      <span id="nav_api"><a href="/api">API</a></span>
+      <span id="nav_database"><a href="/databases">Databases</a></span>
+    </h1>
+    <div id="nav_cite">If you find MOFX-DB useful to your project, please cite our
+      work<br/><a href="https://pubs.acs.org/doi/10.1021/acs.jced.2c00583" target="_blank">
+      pubs.acs.org/doi/10.1021/acs.jced.2c00583
+    </a>
+    </div>
+  </div>
+  <span id="nav_units">
+      <div class="units_selector">
+
+<p class="unitsText">Loading units</p>
+<select id="loadingUnitsSelector" name="loading-selector">
+    <option selected value="native" label="Isotherm Default"></option>
+      <option value="12" label="cm3(STP)/cm3">cm3(STP)/cm3</option>
+      <option value="13" label="cm3(STP)/g">cm3(STP)/g</option>
+      <option value="27" label="g/l">g/l</option>
+      <option value="42" label="mg/g">mg/g</option>
+      <option value="50" label="mmol/g">mmol/g</option>
+      <option value="52" label="mol/kg">mol/kg</option>
+
+
+</select>
+</div>
+      <div class="units_selector">
+<p class="unitsText">Pressure Units</p>
+<select id="pressureUnitsSelector" name="pressure-selector">
+    <option selected value="native" label="Isotherm Default"></option>
+      <option value="6" label="atm">atm</option>
+      <option value="9" label="bar">bar</option>
+      <option value="36" label="kPa">kPa</option>
+      <option value="41" label="mbar">mbar</option>
+      <option value="47" label="mmHg">mmHg</option>
+      <option value="82" label="MPa">MPa</option>
+      <option value="84" label="Pa">Pa</option>
+      <option value="86" label="psi">psi</option>
+      <option value="92" label="Torr">Torr</option>
+</select>
+</div>
+  </span>
+</nav>
+</div>
+<div id="page">
+  <div id="index_content">
+
+  <div id="search">
+    <div>
+      <label for="name" class="slider_title">Name</label>
+      <div class="hcon">
+        <input class="textbox" name="name" type="text" id="name"/>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title toggle" for="mofidkey">
+        <button title="Toggle input below to searching by mofid" id='mofid_button' class="toggle_item active">MOFid</button>
+        <button title="Toggle input below to searching by mofkey" id='mofkey_button' class="toggle_item">MOFkey</button>
+        <a target="_blank" href="https://snurr-group.github.io/web-mofid/">ⓘ</a>
+      </label>
+      <div class="hcon">
+        <input class="textbox" type="text" id="mofidkey" name="mofidkey"/>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title">Void Fraction</label>
+      <div class="hcon">
+        <div id="vf_slider" class="slider"></div>
+      </div>
+      <div class="slider_label">
+        <span id="vf_min">0</span>
+        <span id="vf_max">1</span>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title">Surface Area [m²/g]</label>
+      <div class="hcon">
+        <div id="sa_m2g_slider" class="slider"></div>
+      </div>
+      <div class="slider_label">
+        <span id="sa_m2g_min">0</span>
+        <span id="sa_m2g_max">1</span>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title">Surface Area [m²/cm³]</label>
+      <div class="hcon">
+        <div id="sa_m2cm3_slider" class="slider"></div>
+      </div>
+      <div class="slider_label">
+        <span id="sa_m2cm3_min">0</span>
+        <span id="sa_m2cm3_max">1</span>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title">PLD [Å]</label>
+      <div class="hcon">
+        <div id="pld_slider" class="slider"></div>
+      </div>
+      <div class="slider_label">
+        <span id="pld_min">0</span>
+        <span id="pld_max">1</span>
+      </div>
+    </div>
+    <div>
+      <label class="slider_title">LCD [Å]</label>
+      <div class="hcon">
+        <div id="lcd_slider" class="slider"></div>
+      </div>
+      <div class="slider_label">
+        <span id="lcd_min">0</span>
+        <span id="lcd_max">1</span>
+      </div>
+    </div>
+    <div class='row hcon' style='justify-content: center' id="checkboxes">
+      <div class="vcon col-xs-6">
+
+          <div class='hcon' style='justify-content: left'>
+            <input id='N2' type='checkbox'/>
+            <label for='N2'>N2</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='Xe' type='checkbox'/>
+            <label for='Xe'>Xe</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='Kr' type='checkbox'/>
+            <label for='Kr'>Kr</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='H2' type='checkbox'/>
+            <label for='H2'>H2</label>
+          </div>
+      </div>
+      <div class="col-xs-6">
+          <div class='hcon' style='justify-content: left'>
+            <input id='CO2' type='checkbox'/>
+            <label for='CO2'>CO2</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='CH4' type='checkbox'/>
+            <label for='CH4'>CH4</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='H2O' type='checkbox'/>
+            <label for='H2O'>H2O</label>
+          </div>
+          <div class='hcon' style='justify-content: left'>
+            <input id='Ar' type='checkbox'/>
+            <label for='Ar'>Ar</label>
+          </div>
+
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <p class="hcon slider_title">Database</p>
+    <div id="databases" class="hcon">
+      <select id="db_choice" name="db_choice">
+        <option value="Any">Any</option>
+          <option value="CoREMOF 2014"> CoREMOF 2014 </option>
+          <option value="CoREMOF 2019"> CoREMOF 2019 </option>
+          <option value="CSD"> CSD </option>
+          <option value="hMOF"> hMOF </option>
+          <option value="IZA"> IZA </option>
+          <option value="PCOD-syn"> PCOD-syn </option>
+          <option value="Tobacco"> Tobacco </option>
+      </select>
+    </div>
+    <div class="spacer"></div>
+    <p class="hcon slider_title">DOI</p>
+    <div class="hcon">
+      <select id="doi_selector" name="doi">
+        <option selected value="">Any</option>
+          <option value="1"> 10.1021/acs.jpcc.6b08729</option>
+          <option value="2"> 10.1038/nchem.1192</option>
+          <option value="3"> 10.1039/C2EE23201D</option>
+          <option value="4"> 10.1039/C2SC01097F</option>
+          <option value="5"> 10.1126/sciadv.abg3983</option>
+          <option value="6"> 10.1021/acs.cgd.7b00848</option>
+          <option value="8"> 10.1039/C6EE02104B</option>
+          <option value="9"> 10.1021/cm502594j</option>
+          <option value="10"> 10.1021/acs.jced.9b00835</option>
+      </select>
+    </div>
+    <div class="spacer"></div>
+
+    <p class="hcon slider_title">Atoms in Framework:</p>
+    <div class="side-by-side clearfix hcon">
+      <select id="elements_label" data-placeholder="C Xe He N etc." multiple class="chosen-select">
+          <option>Ac</option>
+          <option>Ag</option>
+          <option>Al</option>
+          <option>Am</option>
+          <option>Ar</option>
+          <option>As</option>
+          <option>At</option>
+          <option>Au</option>
+          <option>B</option>
+          <option>Ba</option>
+          <option>Be</option>
+          <option>Bh</option>
+          <option>Bi</option>
+          <option>Bk</option>
+          <option>Br</option>
+          <option>C</option>
+          <option>Ca</option>
+          <option>Cd</option>
+          <option>Ce</option>
+          <option>Cf</option>
+          <option>Cl</option>
+          <option>Cm</option>
+          <option>Cn</option>
+          <option>Co</option>
+          <option>Cr</option>
+          <option>Cs</option>
+          <option>Cu</option>
+          <option>Db</option>
+          <option>Ds</option>
+          <option>Dy</option>
+          <option>Er</option>
+          <option>Es</option>
+          <option>Eu</option>
+          <option>F</option>
+          <option>Fe</option>
+          <option>Fl</option>
+          <option>Fm</option>
+          <option>Fr</option>
+          <option>Ga</option>
+          <option>Gd</option>
+          <option>Ge</option>
+          <option>H</option>
+          <option>He</option>
+          <option>Hf</option>
+          <option>Hg</option>
+          <option>Ho</option>
+          <option>Hs</option>
+          <option>I</option>
+          <option>In</option>
+          <option>Ir</option>
+          <option>K</option>
+          <option>Kr</option>
+          <option>La</option>
+          <option>Li</option>
+          <option>Lr</option>
+          <option>Lu</option>
+          <option>Lv</option>
+          <option>Mc</option>
+          <option>Md</option>
+          <option>Mg</option>
+          <option>Mn</option>
+          <option>Mo</option>
+          <option>Mt</option>
+          <option>N</option>
+          <option>Na</option>
+          <option>Nb</option>
+          <option>Nd</option>
+          <option>Ne</option>
+          <option>Nh</option>
+          <option>Ni</option>
+          <option>No</option>
+          <option>Np</option>
+          <option>O</option>
+          <option>Og</option>
+          <option>Os</option>
+          <option>P</option>
+          <option>Pa</option>
+          <option>Pb</option>
+          <option>Pd</option>
+          <option>Pm</option>
+          <option>Po</option>
+          <option>Pr</option>
+          <option>Pt</option>
+          <option>Pu</option>
+          <option>Ra</option>
+          <option>Rb</option>
+          <option>Re</option>
+          <option>Rf</option>
+          <option>Rg</option>
+          <option>Rh</option>
+          <option>Rn</option>
+          <option>Ru</option>
+          <option>S</option>
+          <option>Sb</option>
+          <option>Sc</option>
+          <option>Se</option>
+          <option>Sg</option>
+          <option>Si</option>
+          <option>Sm</option>
+          <option>Sn</option>
+          <option>Sr</option>
+          <option>Ta</option>
+          <option>Tb</option>
+          <option>Tc</option>
+          <option>Te</option>
+          <option>Th</option>
+          <option>Ti</option>
+          <option>Tl</option>
+          <option>Tm</option>
+          <option>Ts</option>
+          <option>U</option>
+          <option>V</option>
+          <option>W</option>
+          <option>Xe</option>
+          <option>Y</option>
+          <option>Yb</option>
+          <option>Zn</option>
+          <option>Zr</option>
+
+      </select>
+    </div>
+    <div class="spacer"></div>
+
+  </div>
+  <div id="table_outer">
+    <div id="table_inner">
+      <div id="loading_holder">
+        <div id="loading">
+          <div class="hcon">
+            <img alt="Loading icon spinning" src="/assets/loading-31d32f35ea5e73a3c0f1b8261a347eaf5d2e1944a4af56ee15fa97b550ebec2b.svg"/>
+          </div>
+        </div>
+      </div>
+      <div id="table_wrap">
+        <table class="display nowrap" style='width:100%' id='mof_table'>
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>Void Fraction</td>
+            <td>ASA [m²/cm³]</td>
+            <td>ASA [m²/g]</td>
+            <td>PLD [Å]</td>
+            <td>LCD [Å]</td>
+            <td>Isotherms</td>
+            <td>Database</td>
+            <td>Atoms in MOF</td>
+            <td>More Information</td>
+          </tr>
+          </thead>
+          <tbody id="mof_tbody">
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+        <em>Table only shows up to 100.</em><br/>
+        <br/>
+
+        <div>
+          <a title="cifs + isotherms, will be slow for large #s of mofs" id="download_cifs" href="#" target="_blank">
+            ⇩ Download <span id='mofdb-count'></span> Results ⇩
+          </a>
+        </div>
+        <p>
+          Large downloads may take a long time. <br/>To download an entire database go
+          <a href='/databases'>here</a></p>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer id="footer_grid">
+    <div id="footer_left">
+      <p>Built for the Snurr Research lab by<br/><a target="_blank" href="https://n8ta.com">Nathaniel Tracy-Amoroso</a>
+        in collaboration with<br/>Benjamin Bucior,<br/>Daniel Siderius,<br/>Kaihang Shi,<br/> and Scotty Bobbitt</p>
+      <br/>
+      <p>Image attribution</p>
+      <small>Open graph image tag from CSIRO, CC BY 3.0<br/>
+        https://commons.wikimedia.org/w/index.php?curid=35606550</small>
+    </div>
+    <div id="footer_right">
+      <strong>Current database version:</strong>
+      <a href="https://github.com/snurr-group/mofdb-x-archive/tree/dc8a0295db">
+        <code>dc8a0295db</code>
+</a>
+      <p>To view a previous version of MofDB data enter your version here. Versions can be found in the name of bulk
+        download files and in the mofdb_version property of mof json files.</p>
+      <form action="/mofs/version" accept-charset="UTF-8" method="get">
+        <input minlength="7" placeholder="dc8a0295db" required="required" type="text" name="version" id="version" />
+        <button name="button" type="submit">View</button>
+</form>      <p>Read more <a href="/api#versioning">here</a></p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,170 +1,438 @@
 {
-  "topic": "Aptamer–protein binding measurements",
-  "root_query": "aptamer protein binding Kd SPR SELEX experimental affinity",
-  "source_map_version": "0.1.0",
+  "topic": "MOF-based gas adsorption materials",
+  "root_query": "metal-organic frameworks (MOFs) gas adsorption capacity dataset",
+  "source_map_version": "0.2.0",
+  "access_date_default": "2026-05-27",
   "source_groups": {
     "scientific_papers": [
       {
-        "source_id": "paper_green_2018",
-        "name": "Green et al. 2018 – thrombin-binding DNA aptamer",
-        "source_type": "journal_article",
-        "url": "https://doi.org/10.1021/example.2018",
-        "doi": "10.1021/example.2018",
-        "access_status": "open_access",
-        "access_method": "publisher PDF download",
-        "access_date": "2026-01-15",
-        "license": "CC-BY-4.0",
-        "expected_data_volume": "low",
-        "estimated_records": 8,
-        "available_data_types": ["tables", "text", "figures"],
-        "expected_fields": ["aptamer_sequence", "target_name", "Kd", "assay_method"],
+        "source_id": "paper_uio66_nh2_sonochemical_2023",
+        "name": "Enhanced CO2 capture potential of UiO-66-NH2 synthesized by sonochemical method",
+        "source_type": "scientific_paper",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10645735/",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "Google Scholar and publisher/PMC page",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "CO2 adsorption capacity",
+          "temperature",
+          "pressure",
+          "MOF formula",
+          "metal node",
+          "organic linker",
+          "pore descriptors"
+        ],
+        "metadata_availability": "medium-high",
+        "license_information": "to_be_checked",
+        "possible_overlap": [
+          "NIST ISODB",
+          "public ML datasets"
+        ],
+        "expected_conflicts": [
+          "capacity unit conversions",
+          "MOF naming variants",
+          "figure-derived values versus table values"
+        ],
         "extraction_strategy": {
-          "recommended_method": "pdf_table_extraction plus manual verification"
+          "recommended_method": "manual article/table extraction with unit verification"
         },
-        "notes": "Primary paper for thrombin aptamer benchmark measurements."
+        "notes": "Candidate source for functionalized UiO-66 CO2 adsorption."
       },
       {
-        "source_id": "paper_lee_2020",
-        "name": "Lee et al. 2020 – multiplex aptamer panel",
-        "source_type": "journal_article",
-        "url": "https://doi.org/10.1038/example.2020",
-        "doi": "10.1038/example.2020",
-        "access_status": "subscription",
-        "access_method": "institutional library PDF",
-        "access_date": "2026-01-20",
-        "license": "publisher terms",
-        "expected_data_volume": "medium",
-        "estimated_records": 25,
-        "available_data_types": ["supplementary_tables"],
-        "expected_fields": ["aptamer_sequence", "target_name", "IC50", "buffer"],
+        "source_id": "paper_hkust1_composites_ch4_2023",
+        "name": "Development of HKUST-1 composites for methane storage",
+        "source_type": "scientific_paper",
+        "url": "https://www.sciencedirect.com/science/article/pii/S2590123023002256",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "Google Scholar and publisher page",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "CH4 adsorption capacity",
+          "pressure-dependent isotherms",
+          "HKUST-1 composite composition",
+          "surface area",
+          "pore volume"
+        ],
+        "metadata_availability": "medium",
+        "license_information": "to_be_checked",
+        "possible_overlap": [
+          "NIST ISODB",
+          "Kaggle/GitHub benchmark datasets"
+        ],
+        "expected_conflicts": [
+          "HKUST-1 aliases",
+          "composite versus pure MOF records",
+          "capacity unit mismatch"
+        ],
         "extraction_strategy": {
-          "recommended_method": "supplementary PDF table parsing"
+          "recommended_method": "extract tabular values if available; otherwise postpone until figure extraction workflow"
         },
-        "notes": "Use supplementary Table S3 for binding constants."
+        "notes": "Candidate source for CH4 storage records."
       },
       {
-        "source_id": "paper_kim_2015",
-        "name": "Kim et al. 2015 – lysozyme-binding aptamer",
-        "source_type": "journal_article",
-        "url": "https://doi.org/10.1016/example.2015",
-        "doi": "10.1016/example.2015",
-        "access_status": "open_access",
-        "access_method": "publisher PDF download",
-        "access_date": "2026-01-18",
-        "license": "CC-BY-NC-ND",
-        "expected_data_volume": "low",
-        "estimated_records": 6,
-        "available_data_types": ["tables", "text"],
-        "expected_fields": ["aptamer_sequence", "target_name", "Kd", "assay_method"],
+        "source_id": "paper_nanosized_cu_mofs_go_gas_storage",
+        "name": "Nanosized Cu-MOFs induced by graphene oxide and enhanced gas storage capacity",
+        "source_type": "scientific_paper",
+        "url": "data/raw/pdf/nanosized_cu_mofs_go_gas_storage.pdf",
+        "doi": "10.1039/c3ee23421e",
+        "access_status": "local_pdf_available",
+        "access_method": "user-provided PDF",
+        "access_date": "2026-05-28",
+        "expected_data_content": [
+          "Cu-BTC and GO@Cu-BTC composite material descriptors",
+          "BET surface area",
+          "pore volume",
+          "CO2 capacity at 273 K and 1 atm",
+          "H2 capacity at 77 K and 42 atm",
+          "CO2, H2, CH4 and N2 isotherm figures"
+        ],
+        "metadata_availability": "medium-high",
+        "license_information": "to_be_checked before redistribution",
+        "possible_overlap": [
+          "NIST ISODB",
+          "MOFX-DB",
+          "digitized figure preview files"
+        ],
+        "expected_conflicts": [
+          "table endpoints versus visually digitized isotherm points",
+          "composite material identity versus parent Cu-BTC",
+          "capacity units differ between H2 wt% and CO2 mmol/g"
+        ],
         "extraction_strategy": {
-          "recommended_method": "pdfplumber table extraction"
+          "recommended_method": "use Table 1 as high-confidence source; keep figure digitization as low-confidence preview until QA"
         },
-        "notes": "Benchmark lysozyme aptamer measurements."
-      }
-    ],
-    "supplementary_materials": [
+        "notes": "Preview parsing produced candidate records in data/extracted/pdf_parse_preview/."
+      },
       {
-        "source_id": "supp_lee_2020_s3",
-        "name": "Lee 2020 Supplementary Table S3",
-        "source_type": "supplementary_data",
-        "url": "https://doi.org/10.1038/example.2020#supplementary",
-        "doi": "10.1038/example.2020",
-        "access_status": "open_access",
-        "access_method": "supplementary PDF",
-        "access_date": "2026-01-21",
-        "license": "CC-BY-4.0",
-        "expected_data_volume": "medium",
-        "estimated_records": 20,
-        "available_data_types": ["tables"],
-        "expected_fields": ["aptamer_sequence", "measurement_value", "measurement_unit"],
+        "source_id": "paper_nihms_1670563",
+        "name": "NPF-200 hydrogen volumetric working capacity article",
+        "source_type": "scientific_paper",
+        "url": "data/raw/pdf/nihms_1670563.pdf",
+        "doi": "10.1002/adma.201907995",
+        "access_status": "local_pdf_available",
+        "access_method": "user-provided PDF",
+        "access_date": "2026-05-28",
+        "expected_data_content": [
+          "NPF-200 hydrogen adsorption",
+          "total and excess H2 isotherms",
+          "working capacity between 100 and 5 bar at 77 K",
+          "pore volume and structural discussion"
+        ],
+        "metadata_availability": "medium",
+        "license_information": "to_be_checked before redistribution",
+        "possible_overlap": [
+          "NIST ISODB",
+          "MOFX-DB",
+          "supporting information"
+        ],
+        "expected_conflicts": [
+          "working capacity is not a single isotherm point",
+          "some required MOF identity fields are in article/SI rather than page 6 text",
+          "figure digitization from small plot has lower confidence"
+        ],
         "extraction_strategy": {
-          "recommended_method": "Camelot or tabula on supplementary PDF"
+          "recommended_method": "use text endpoints as candidate records; verify MOF formula/linker and pressure-range semantics before final inclusion"
         },
-        "notes": "Machine-readable tables; preferred over main-text figure values."
+        "notes": "Preview parsing produced candidate records in data/extracted/pdf_parse_preview/."
       }
     ],
     "databases": [
       {
-        "source_id": "db_aptagen",
-        "name": "AptaIndex / literature-curated aptamer entries",
-        "source_type": "database",
-        "url": "https://example.org/aptamer-db",
+        "source_id": "db_nist_isodb",
+        "name": "NIST/ARPA-E Database of Novel and Emerging Adsorbent Materials (NIST ISODB)",
+        "source_type": "adsorption_database",
+        "url": "https://adsorption.nist.gov/isodb/index.php",
         "doi": "",
-        "access_status": "open_access",
-        "access_method": "web export and API (if available)",
-        "access_date": "2026-02-01",
-        "license": "CC-BY-4.0",
-        "expected_data_volume": "high",
-        "estimated_records": 200,
-        "available_data_types": ["structured_records", "sequences"],
-        "expected_fields": ["aptamer_sequence", "target_name", "Kd"],
+        "access_status": "to_be_checked",
+        "access_method": "database web interface/API",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "adsorption isotherms",
+          "pressure",
+          "temperature",
+          "gas type",
+          "capacity values",
+          "references"
+        ],
+        "metadata_availability": "high",
+        "license_information": "to_be_checked",
+        "possible_overlap": [
+          "scientific papers",
+          "public ML datasets"
+        ],
+        "expected_conflicts": [
+          "unit inconsistencies",
+          "MOF aliases",
+          "database values derived from figures"
+        ],
         "extraction_strategy": {
-          "recommended_method": "web_scrape or bulk CSV download"
+          "recommended_method": "API or structured export with source DOI retained"
         },
-        "notes": "Cross-check sequences against primary papers when possible."
+        "notes": "Primary candidate for machine-readable adsorption capacity points."
+      },
+      {
+        "source_id": "db_mofxdb",
+        "name": "MOFX-DB",
+        "source_type": "mof_database_api",
+        "url": "https://mof.tech.northwestern.edu/",
+        "doi": "",
+        "access_status": "open_web_api_probe_successful",
+        "access_method": "web interface and JSON API probe (/mofs.json?page=1)",
+        "access_date": "2026-05-28",
+        "expected_data_content": [
+          "MOF identifiers",
+          "CIF structures",
+          "MOFid and MOFkey",
+          "largest cavity diameter",
+          "pore limiting diameter",
+          "adsorption isotherm metadata",
+          "pressure",
+          "temperature",
+          "adsorbate gas",
+          "capacity values and units"
+        ],
+        "metadata_availability": "high",
+        "license_information": "to_be_checked before bulk reuse",
+        "possible_overlap": [
+          "NIST ISODB",
+          "CoRE MOF Database",
+          "scientific papers"
+        ],
+        "expected_conflicts": [
+          "computational/simulation records mixed with experimentally sourced literature metadata",
+          "ambiguous unit labels in some isotherm objects",
+          "MOF identity differs between display name, MOFid, MOFkey, and CIF content"
+        ],
+        "extraction_strategy": {
+          "recommended_method": "small API probes first; accept records only after experimental/computational origin, units, and license are verified"
+        },
+        "notes": "Useful for testing web/API parsing and MOF identity fields; not yet accepted as final experimental data."
+      },
+      {
+        "source_id": "db_core_mof",
+        "name": "CoRE MOF Database",
+        "source_type": "structural_database",
+        "url": "https://gregchung.github.io/CoRE-MOFs/",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "database download",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "CIF structures",
+          "MOF identifiers",
+          "pore descriptors",
+          "surface area",
+          "structural metadata"
+        ],
+        "metadata_availability": "medium-high",
+        "license_information": "to_be_checked",
+        "possible_overlap": [
+          "CSD",
+          "NIST ISODB",
+          "GitHub/Hugging Face datasets"
+        ],
+        "expected_conflicts": [
+          "structure-only records without capacity",
+          "multiple structures for one MOF name",
+          "solvent-removed versus experimental structures"
+        ],
+        "extraction_strategy": {
+          "recommended_method": "use for MOF identity and descriptor enrichment"
+        },
+        "notes": "Useful for the optional separate MOF materials table."
+      },
+      {
+        "source_id": "db_csd",
+        "name": "Cambridge Structural Database (CSD)",
+        "source_type": "crystallographic_repository",
+        "url": "https://www.ccdc.cam.ac.uk/solutions/software/csd/",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "CCDC/CSD access route",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "crystal structures",
+          "CSD refcodes",
+          "chemical metadata",
+          "bibliographic links"
+        ],
+        "metadata_availability": "high",
+        "license_information": "to_be_checked",
+        "possible_overlap": [
+          "CoRE MOF Database",
+          "scientific papers"
+        ],
+        "expected_conflicts": [
+          "multiple refcodes for similar MOF names",
+          "license restrictions",
+          "naming inconsistencies"
+        ],
+        "extraction_strategy": {
+          "recommended_method": "use refcodes and structural metadata for MOF identity resolution"
+        },
+        "notes": "Candidate authority for defining whether two names refer to the same MOF."
       }
     ],
     "aggregators": [
       {
-        "source_id": "agg_uniprot_crossref",
-        "name": "UniProt + Crossref metadata for target proteins",
-        "source_type": "aggregator",
-        "url": "https://www.uniprot.org/",
+        "source_id": "agg_google_scholar",
+        "name": "Google Scholar",
+        "source_type": "literature_aggregator",
+        "url": "https://scholar.google.com/",
         "doi": "",
-        "access_status": "open_access",
-        "access_method": "REST API",
-        "access_date": "2026-02-05",
-        "license": "CC-BY-4.0",
-        "expected_data_volume": "metadata_only",
-        "estimated_records": 0,
-        "available_data_types": ["protein_names", "identifiers"],
-        "expected_fields": ["target_name", "target_type"],
+        "access_status": "to_be_checked",
+        "access_method": "keyword search: metal-organic frameworks (MOFs)",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "article titles",
+          "citations",
+          "publisher links",
+          "related papers"
+        ],
+        "metadata_availability": "medium",
+        "license_information": "metadata/search use only",
+        "possible_overlap": [
+          "scientific papers"
+        ],
+        "expected_conflicts": [
+          "duplicate records",
+          "incomplete metadata",
+          "paywalled full text"
+        ],
         "extraction_strategy": {
-          "recommended_method": "API lookup to standardize target names"
+          "recommended_method": "source discovery only"
         },
-        "notes": "Does not provide binding values; enriches target metadata only."
+        "notes": "Used to find scientific literature, not direct dataset records."
       }
     ],
     "github_repositories": [
       {
-        "source_id": "gh_aptamer_benchmark",
-        "name": "community/aptamer-binding-benchmark",
-        "source_type": "github_repository",
-        "url": "https://github.com/example/aptamer-binding-benchmark",
+        "source_id": "gh_mof_adsorption_search",
+        "name": "GitHub search results for MOF adsorption datasets",
+        "source_type": "github_repository_search",
+        "url": "https://github.com/search?q=MOF+adsorption+dataset&type=repositories",
         "doi": "",
-        "access_status": "open_access",
-        "access_method": "git clone",
-        "access_date": "2026-02-10",
-        "license": "MIT",
-        "expected_data_volume": "medium",
-        "estimated_records": 50,
-        "available_data_types": ["csv", "json"],
-        "expected_fields": ["aptamer_sequence", "target_name", "measurement_value"],
+        "access_status": "to_be_checked",
+        "access_method": "GitHub repository search",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "CSV/JSON datasets",
+          "notebooks",
+          "preprocessing scripts",
+          "README provenance"
+        ],
+        "metadata_availability": "variable",
+        "license_information": "repository-specific; must be checked before use",
+        "possible_overlap": [
+          "NIST ISODB",
+          "CoRE MOF",
+          "Kaggle/Hugging Face mirrors"
+        ],
+        "expected_conflicts": [
+          "unknown preprocessing",
+          "missing DOI provenance",
+          "unclear experimental versus computational origin"
+        ],
         "extraction_strategy": {
-          "recommended_method": "import released CSV with license check"
+          "recommended_method": "inspect candidate repositories individually; include only if license and provenance are clear"
         },
-        "notes": "Verify commit hash and release tag for reproducibility."
+        "notes": "Discovery source only until individual repositories are reviewed."
       }
     ],
-    "ml_datasets": [
+    "huggingface_datasets": [
       {
-        "source_id": "ml_aptamer_kaggle",
-        "name": "Kaggle – Aptamer affinity prediction subset",
-        "source_type": "ml_dataset",
-        "url": "https://www.kaggle.com/datasets/example/aptamer-affinity",
+        "source_id": "hf_atommof_data",
+        "name": "AtomMOF-data",
+        "source_type": "huggingface_dataset",
+        "url": "https://huggingface.co/datasets/nayoung10/AtomMOF-data",
         "doi": "",
-        "access_status": "registration_required",
-        "access_method": "Kaggle API download",
-        "access_date": "2026-02-12",
-        "license": "unknown",
-        "expected_data_volume": "high",
-        "estimated_records": 500,
-        "available_data_types": ["csv"],
-        "expected_fields": ["aptamer_sequence", "target_name", "label"],
+        "access_status": "to_be_checked",
+        "access_method": "Hugging Face dataset card/download",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "MOF-adsorbate structure prediction data",
+          "metadata files",
+          "LMDB archives"
+        ],
+        "metadata_availability": "medium",
+        "license_information": "listed as other; must be checked before use",
+        "possible_overlap": [
+          "GitHub AtomMOF repository",
+          "ODAC datasets"
+        ],
+        "expected_conflicts": [
+          "not necessarily experimental capacity data",
+          "large archive format",
+          "license unclear for direct redistribution"
+        ],
         "extraction_strategy": {
-          "recommended_method": "document provenance; use only if license permits redistribution"
+          "recommended_method": "use as discovery/background source unless capacity values and provenance are explicit"
         },
-        "notes": "May mix predicted and experimental values—filter by source column."
+        "notes": "Relevant to MOF-adsorbate data but likely not primary experimental records."
+      },
+      {
+        "source_id": "hf_macbench_mof_capacity",
+        "name": "MaCBench MOF capacity subsets",
+        "source_type": "huggingface_dataset",
+        "url": "https://huggingface.co/datasets/jablonkagroup/MaCBench",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "Hugging Face dataset card",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "MOF capacity comparison tasks",
+          "MOF capacity value tasks",
+          "adsorption isotherm interpretation questions"
+        ],
+        "metadata_availability": "medium-high",
+        "license_information": "MIT; dataset card states evaluation-only use",
+        "possible_overlap": [
+          "scientific paper figures",
+          "benchmark question datasets"
+        ],
+        "expected_conflicts": [
+          "evaluation benchmark rather than raw experimental dataset",
+          "data may be transformed into QA format"
+        ],
+        "extraction_strategy": {
+          "recommended_method": "do not use as final training dataset source; inspect only for schema examples and source discovery"
+        },
+        "notes": "Useful evidence that MOF capacity extraction appears in public benchmarks."
+      }
+    ],
+    "kaggle_datasets": [
+      {
+        "source_id": "kaggle_mof_materials_prediction",
+        "name": "Metal-Organic Frame Materials Prediction",
+        "source_type": "kaggle_dataset",
+        "url": "https://www.kaggle.com/datasets/marquis03/metal-organic-frame-materials-prediction",
+        "doi": "",
+        "access_status": "to_be_checked",
+        "access_method": "Kaggle dataset page/API",
+        "access_date": "2026-05-27",
+        "expected_data_content": [
+          "MOF descriptors",
+          "fingerprints",
+          "RAC features",
+          "property prediction targets"
+        ],
+        "metadata_availability": "variable",
+        "license_information": "Kaggle dataset-specific license must be checked",
+        "possible_overlap": [
+          "GitHub datasets",
+          "public ML-ready MOF datasets"
+        ],
+        "expected_conflicts": [
+          "ML features without raw adsorption conditions",
+          "unclear provenance",
+          "may not contain experimental gas capacity records"
+        ],
+        "extraction_strategy": {
+          "recommended_method": "inspect files and use only if capacity units, conditions, and provenance are explicit"
+        },
+        "notes": "Candidate discovery source for MOF descriptors and ML-ready tables."
       }
     ]
   }

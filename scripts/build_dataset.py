@@ -23,66 +23,28 @@ def load_schema_columns() -> list[str]:
     return [field["name"] for field in schema["fields"]]
 
 
-def map_pdf_row(row: pd.Series) -> dict:
-    notes = str(row.get("extraction_notes", "") or "")
-    return {
-        "record_id": row["record_id"],
-        "aptamer_sequence": row["aptamer_sequence"],
-        "target_name": row["target_name"],
-        "target_type": row.get("target_type", ""),
-        "measurement_type": row["measurement_type"],
-        "measurement_value": row.get("measurement_value"),
-        "measurement_unit": row.get("measurement_unit", ""),
-        "normalized_value_nm": row.get("measurement_value")
-        if str(row.get("measurement_unit", "")).lower() in ("nm", "nanomolar")
-        else None,
-        "assay_method": row.get("assay_method", ""),
-        "buffer": "",
-        "temperature_c": None,
-        "source_id": row["source_id"],
-        "source_type": "scientific_paper",
-        "source_url": "",
-        "doi": "",
-        "extraction_method": "pdf_table",
-        "extraction_confidence": row.get("extraction_confidence", ""),
-        "notes": notes,
-    }
-
-
-def map_web_row(row: pd.Series) -> dict:
-    notes = str(row.get("extraction_notes", "") or "")
-    unit = str(row.get("measurement_unit", "") or "")
-    val = row.get("measurement_value")
-    norm = val if unit.lower() in ("nm", "nanomolar") else None
-    return {
-        "record_id": row["record_id"],
-        "aptamer_sequence": row["aptamer_sequence"],
-        "target_name": row["target_name"],
-        "target_type": row.get("target_type", ""),
-        "measurement_type": row["measurement_type"],
-        "measurement_value": val,
-        "measurement_unit": unit,
-        "normalized_value_nm": norm,
-        "assay_method": "",
-        "buffer": "",
-        "temperature_c": None,
-        "source_id": row["source_id"],
-        "source_type": "database",
-        "source_url": row.get("source_url", ""),
-        "doi": "",
-        "extraction_method": "web_scrape",
-        "extraction_confidence": row.get("extraction_confidence", ""),
-        "notes": notes,
-    }
+def read_extracted_csv(path: Path, columns: list[str]) -> pd.DataFrame:
+    if not path.is_file():
+        return pd.DataFrame(columns=columns)
+    df = pd.read_csv(path)
+    if df.empty:
+        return pd.DataFrame(columns=columns)
+    for col in columns:
+        if col not in df.columns:
+            df[col] = None
+    return df[columns]
 
 
 def build() -> pd.DataFrame:
-    pdf_df = pd.read_csv(PDF_CSV)
-    web_df = pd.read_csv(WEB_CSV)
-    rows = [map_pdf_row(r) for _, r in pdf_df.iterrows()]
-    rows += [map_web_row(r) for _, r in web_df.iterrows()]
     columns = load_schema_columns()
-    return pd.DataFrame(rows, columns=columns)
+    frames = [
+        read_extracted_csv(PDF_CSV, columns),
+        read_extracted_csv(WEB_CSV, columns),
+    ]
+    rows = [frame for frame in frames if not frame.empty]
+    if not rows:
+        return pd.DataFrame(columns=columns)
+    return pd.concat(rows, ignore_index=True)
 
 
 def main() -> None:

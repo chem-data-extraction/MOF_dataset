@@ -1,55 +1,90 @@
 {
-  "web_extraction_version": "0.1.0",
+  "web_extraction_version": "0.3.0",
   "output_records_file": "data/extracted/web_extracted_records.csv",
+  "probe_summary_file": "data/extracted/web_probe_summary.json",
   "script": "scripts/extract_web.py",
+  "status": "implemented_probe_no_accepted_records",
+  "detail_probe_mofs": [
+    {
+      "source_id": "db_mofxdb",
+      "mof_name": "hMOF-0",
+      "mofdb_id": 15339,
+      "mof_url": "https://mof.tech.northwestern.edu/mofs/15339.json",
+      "raw_mof_path": "data/raw/web/mofxdb_hMOF-0.json",
+      "raw_isotherm_directory": "data/raw/web/mofxdb_hMOF-0_isotherms",
+      "material_summary_output": "data/extracted/web_parse_preview/mofxdb_hMOF-0_material_summary.json",
+      "isotherm_points_output": "data/extracted/web_parse_preview/mofxdb_hMOF-0_isotherm_points.csv",
+      "status": "implemented_preview_not_promoted"
+    }
+  ],
+  "detail_probe_batches": [
+    {
+      "source_id": "db_mofxdb",
+      "batch_id": "mofxdb_page1_first10_with_isotherms",
+      "raw_api_probe_path": "data/raw/web/mofxdb_mofs_page1.json",
+      "limit": 10,
+      "require_isotherms": true,
+      "combined_materials_output": "data/extracted/web_parse_preview/mofxdb_batch/materials_preview.csv",
+      "combined_isotherm_points_output": "data/extracted/web_parse_preview/mofxdb_batch/isotherm_points_preview.csv",
+      "status": "implemented_preview_not_promoted",
+      "notes": "Small batch preview from the first MOFX-DB API page. Do not promote to final records until source terms and experimental/computational origin are checked."
+    }
+  ],
+  "nist_mirror_batches": [
+    {
+      "source_id": "db_nist_isodb",
+      "batch_id": "nist_zr_fum_hydrogen_storage_example",
+      "github_repository": "https://github.com/NIST-ISODB/isodb-library",
+      "raw_base_url": "https://raw.githubusercontent.com/NIST-ISODB/isodb-library/master/Library",
+      "doi_stub": "10.1016j.ijhydene.2015.06.109",
+      "isotherm_limit": 5,
+      "raw_directory": "data/raw/web/nist_isodb_mirror/10.1016j.ijhydene.2015.06.109",
+      "materials_output": "data/extracted/web_parse_preview/nist_isodb_mirror/materials_preview.csv",
+      "isotherm_points_output": "data/extracted/web_parse_preview/nist_isodb_mirror/isotherm_points_preview.csv",
+      "status": "implemented_preview_not_promoted",
+      "notes": "Official GitHub mirror of the NIST ISODB API. This preview parses one DOI directory and linked adsorbent/adsorbate/bibliography JSON files."
+    }
+  ],
   "input_pages": [
     {
-      "source_id": "db_aptagen",
-      "page_id": "aptagen_thrombin_entries",
-      "url": "https://example.org/aptamer-db/target/thrombin",
-      "access_date": "2026-02-01",
-      "access_status": "open_access",
-      "robots_notes": "robots.txt allows crawling of /aptamer-db/ with 1 req/s; respect terms of use.",
-      "selection_reason": "Structured HTML tables listing curated thrombin aptamer Kd values.",
-      "page_type": "database_browse_page",
-      "expected_content": "HTML table with columns: sequence, target, Kd, method",
+      "source_id": "db_mofxdb",
+      "page_id": "mofxdb_home",
+      "url": "https://mof.tech.northwestern.edu/",
+      "api_probe_url": "https://mof.tech.northwestern.edu/mofs.json?page=1",
+      "access_date": "2026-05-28",
+      "access_status": "open_web_api_probe_successful",
+      "robots_notes": "Use small API probes only; avoid bulk downloads until license and intended use are checked.",
+      "selection_reason": "MOFX-DB provides MOF structures, pore descriptors, MOF identifiers, and isotherm records through a JSON API.",
+      "page_type": "mof_database_api",
+      "expected_content": "MOF identifiers, CIF structures, pore descriptors, isotherm metadata, adsorbate names, pressure, temperature, capacity values, units.",
       "parser_plan": {
-        "tool": "requests + BeautifulSoup",
-        "selectors": {
-          "table": "table.binding-records",
-          "row": "tbody tr",
-          "sequence": "td.seq",
-          "target": "td.target",
-          "value": "td.kd",
-          "unit": "td.unit"
-        }
+        "tool": "requests",
+        "api_probe": "GET /mofs.json?page=1",
+        "accepted_record_policy": "Do not add records to the final extracted table until experimental/computational origin and units are verified."
       },
-      "raw_snapshot_path": "data/raw/web/aptagen_thrombin_entries.html",
-      "extraction_status": "template_pending"
+      "raw_snapshot_path": "data/raw/web/mofxdb_home.html",
+      "raw_api_probe_path": "data/raw/web/mofxdb_mofs_page1.json",
+      "extraction_status": "probe_successful_no_accepted_records"
     },
     {
-      "source_id": "db_aptagen",
-      "page_id": "aptagen_lysozyme_entries",
-      "url": "https://example.org/aptamer-db/target/lysozyme",
-      "access_date": "2026-02-02",
-      "access_status": "open_access",
-      "robots_notes": "Same policy as thrombin browse page.",
-      "selection_reason": "Complements PDF sources for lysozyme aptamer records.",
-      "page_type": "database_browse_page",
-      "expected_content": "Paginated result list with affinity fields",
+      "source_id": "db_nist_isodb",
+      "page_id": "nist_isodb_home",
+      "url": "https://adsorption.nist.gov/isodb/index.php#home",
+      "api_probe_url": "https://adsorption.nist.gov/isodb/api",
+      "access_date": "2026-05-28",
+      "access_status": "open_web_snapshot_successful_github_api_mirror_available",
+      "robots_notes": "Check NIST ISODB terms and API documentation before automated high-volume access.",
+      "selection_reason": "NIST ISODB is the primary candidate source for machine-readable experimental adsorption isotherms and DOI-linked provenance.",
+      "page_type": "adsorption_database_web_app",
+      "expected_content": "Adsorbent names, adsorbates, isotherm points, pressure, temperature, capacity values, units, DOI/source references.",
       "parser_plan": {
-        "tool": "requests + BeautifulSoup",
-        "selectors": {
-          "table": "table.binding-records",
-          "row": "tbody tr",
-          "sequence": "td.seq",
-          "target": "td.target",
-          "value": "td.kd",
-          "unit": "td.unit"
-        }
+        "tool": "requests against the official GitHub API mirror",
+        "api_probe": "The web route /isodb/api returns an app shell, but the official mirror at https://github.com/NIST-ISODB/isodb-library exposes equivalent JSON files.",
+        "accepted_record_policy": "No records accepted until a stable endpoint/export path is identified and units are verified."
       },
-      "raw_snapshot_path": "data/raw/web/aptagen_lysozyme_entries.html",
-      "extraction_status": "template_pending"
+      "raw_snapshot_path": "data/raw/web/nist_isodb_home.html",
+      "raw_api_probe_path": "data/raw/web/nist_isodb_api_probe.html",
+      "extraction_status": "snapshot_successful_no_records"
     }
   ]
 }

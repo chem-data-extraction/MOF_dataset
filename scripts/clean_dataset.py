@@ -11,19 +11,26 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 
 MERGED_PATH = ROOT / "data/interim/merged_records.csv"
-PDF_CSV = ROOT / "data/extracted/pdf_extracted_records.csv"
-WEB_CSV = ROOT / "data/extracted/web_extracted_records.csv"
 SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
+MOF_SCHEMA_PATH = ROOT / "specs/mof_materials_schema.json"
+MEASUREMENT_SCHEMA_PATH = ROOT / "specs/adsorption_measurements_schema.json"
 DATASET_PATH = ROOT / "data/processed/dataset.csv"
+MOF_TABLE_PATH = ROOT / "data/processed/mof_materials.csv"
+MEASUREMENT_TABLE_PATH = ROOT / "data/processed/adsorption_measurements.csv"
 
 MISSING_TOKENS = {"", "na", "n/a", "none", "null", "-", "nan"}
-
-
-def normalize_sequence(seq: object) -> str:
-    if pd.isna(seq):
-        return ""
-    text = str(seq).upper().strip()
-    return "".join(c for c in text if c in "ACGTU")
+NUMERIC_COLUMNS = {
+    "pore_size",
+    "surface_area_BET",
+    "pore_volume",
+    "molecular_weight",
+    "temperature",
+    "pressure",
+    "capacity_value",
+    "selectivity",
+    "error_bar",
+    "publication_year",
+}
 
 
 def normalize_missing_values(value: object):
@@ -35,47 +42,25 @@ def normalize_missing_values(value: object):
     return value
 
 
-def normalize_measurement_to_nm(value: object, unit: object):
-    if pd.isna(value) or value == "" or value is None:
+def normalize_numeric(value: object):
+    value = normalize_missing_values(value)
+    if value is None:
         return None
     try:
-        num = float(value)
+        return float(value)
     except (TypeError, ValueError):
-        return None
-    if pd.isna(unit):
-        return None
-    u = str(unit).strip().lower()
-    factors = {
-        "nm": 1.0,
-        "nanomolar": 1.0,
-        "pm": 0.001,
-        "picomolar": 0.001,
-        "μm": 1000.0,
-        "um": 1000.0,
-        "micromolar": 1000.0,
-        "µm": 1000.0,
-        "m": 1e9,
-        "molar": 1e9,
-    }
-    factor = factors.get(u)
-    if factor is None:
-        return None
-    return num * factor
+        return value
 
 
 def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
-    if "aptamer_sequence" in out.columns:
-        out["aptamer_sequence"] = out["aptamer_sequence"].map(normalize_sequence)
     for col in out.columns:
-        if col in ("record_id", "aptamer_sequence"):
+        if col == "record_id":
             continue
-        out[col] = out[col].map(normalize_missing_values)
-    if "measurement_value" in out.columns and "measurement_unit" in out.columns:
-        out["normalized_value_nm"] = [
-            normalize_measurement_to_nm(v, u)
-            for v, u in zip(out["measurement_value"], out["measurement_unit"])
-        ]
+        if col in NUMERIC_COLUMNS:
+            out[col] = out[col].map(normalize_numeric)
+        else:
+            out[col] = out[col].map(normalize_missing_values)
     if "record_id" in out.columns:
         out = out.drop_duplicates(subset=["record_id"], keep="first")
     return out
@@ -83,6 +68,12 @@ def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 def load_schema_columns() -> list[str]:
     with SCHEMA_PATH.open(encoding="utf-8") as f:
+        schema = json.load(f)
+    return [field["name"] for field in schema["fields"]]
+
+
+def load_schema_columns_from(path: Path) -> list[str]:
+    with path.open(encoding="utf-8") as f:
         schema = json.load(f)
     return [field["name"] for field in schema["fields"]]
 
@@ -111,7 +102,31 @@ def main() -> None:
     cleaned = clean_dataframe(df)
     DATASET_PATH.parent.mkdir(parents=True, exist_ok=True)
     cleaned.to_csv(DATASET_PATH, index=False)
+    write_normalized_tables(cleaned)
     print(f"Wrote {len(cleaned)} cleaned rows to {DATASET_PATH.relative_to(ROOT)}")
+
+
+def write_normalized_tables(df: pd.DataFrame) -> None:
+    material_columns = load_schema_columns_from(MOF_SCHEMA_PATH)
+    measurement_columns = load_schema_columns_from(MEASUREMENT_SCHEMA_PATH)
+
+    material_df = df.copy()
+    for col in material_columns:
+        if col not in material_df.columns:
+            material_df[col] = None
+    material_df = material_df[material_columns]
+    if "mof_id" in material_df.columns:
+        material_df = material_df.drop_duplicates(subset=["mof_id"], keep="first")
+
+    measurement_df = df.copy()
+    for col in measurement_columns:
+        if col not in measurement_df.columns:
+            measurement_df[col] = None
+    measurement_df = measurement_df[measurement_columns]
+
+    MOF_TABLE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    material_df.to_csv(MOF_TABLE_PATH, index=False)
+    measurement_df.to_csv(MEASUREMENT_TABLE_PATH, index=False)
 
 
 if __name__ == "__main__":

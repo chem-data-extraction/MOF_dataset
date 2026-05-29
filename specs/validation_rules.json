@@ -51,11 +51,11 @@
       "description": "Dataset columns must match field names in specs/dataset_schema.json."
     },
     {
-      "rule_id": "measurement_value_numeric",
-      "target": "measurement_value",
+      "rule_id": "capacity_value_numeric",
+      "target": "capacity_value",
       "rule_type": "numeric_or_null",
       "severity": "error",
-      "description": "measurement_value must be numeric or empty/null."
+      "description": "capacity_value must be numeric or empty/null."
     },
     {
       "rule_id": "extraction_confidence_allowed",

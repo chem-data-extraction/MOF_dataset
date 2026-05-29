@@ -1,0 +1,56 @@
+figure,series,gas_type,temperature,temperature_unit,pressure,pressure_unit,capacity_value,capacity_unit,digitization_note
+Fig6_CO2_273K,CG-9,CO2,273,K,0.0,atm,0.000,mmol/g,origin point
+Fig6_CO2_273K,CG-3,CO2,273,K,0.0,atm,0.000,mmol/g,origin point
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.0,atm,0.000,mmol/g,origin point
+Fig6_CO2_273K,CG-15,CO2,273,K,0.0,atm,0.000,mmol/g,origin point
+Fig6_CO2_273K,GO,CO2,273,K,0.0,atm,0.000,mmol/g,origin point
+Fig6_CO2_273K,CG-9,CO2,273,K,0.1,atm,1.855,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.1,atm,0.871,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.1,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.1,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.1,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.2,atm,3.030,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.2,atm,2.041,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.2,atm,0.753,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.2,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.2,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.3,atm,4.089,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.3,atm,3.377,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.3,atm,2.341,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.3,atm,0.881,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.3,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.4,atm,4.916,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.4,atm,3.955,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.4,atm,2.574,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.4,atm,0.786,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.4,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.5,atm,5.584,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.5,atm,4.499,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.5,atm,2.767,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.5,atm,0.898,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.5,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.6,atm,6.148,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.6,atm,4.920,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.6,atm,2.928,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.6,atm,0.914,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.6,atm,0.371,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.7,atm,6.633,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.7,atm,5.322,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.7,atm,3.069,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.7,atm,0.915,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.7,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.8,atm,7.082,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.8,atm,5.674,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.8,atm,3.193,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.8,atm,0.921,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.8,atm,0.384,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,0.9,atm,7.459,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,0.9,atm,6.040,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,0.9,atm,3.294,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,0.9,atm,0.920,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,0.9,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-9,CO2,273,K,1.0,atm,7.857,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-3,CO2,273,K,1.0,atm,3.379,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,Cu-BTC,CO2,273,K,1.0,atm,0.925,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,CG-15,CO2,273,K,1.0,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA
+Fig6_CO2_273K,GO,CO2,273,K,1.0,atm,,mmol/g,auto grayscale vertical-slice digitization; needs QA

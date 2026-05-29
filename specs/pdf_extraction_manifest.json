@@ -1,42 +1,205 @@
 {
-  "pdf_extraction_process": "Extract aptamer–protein binding records from selected PDF sources listed below.",
+  "pdf_extraction_process": "Extract experimental MOF gas adsorption capacity records from selected PDF sources.",
   "output_records_file": "data/extracted/pdf_extracted_records.csv",
+  "parsed_measurement_preview_file": "data/extracted/pdf_parsed_records.csv",
+  "parsed_material_preview_file": "data/extracted/pdf_parsed_materials.csv",
+  "raw_pdf_directory": "data/raw/pdf/",
+  "schema_reference": "specs/dataset_schema.json",
+  "status": "planned_no_rows_extracted",
+  "pdf_parsed_records_columns": [
+    "MOF_name",
+    "gas_type",
+    "temperature",
+    "temperature_unit",
+    "pressure",
+    "pressure_unit",
+    "capacity_value",
+    "capacity_unit",
+    "DOI",
+    "publication_year",
+    "source_id",
+    "source_url",
+    "source_location",
+    "extraction_method",
+    "notes"
+  ],
+  "pdf_parsed_materials_columns": [
+    "MOF_name",
+    "chemical_formula",
+    "metal_node",
+    "organic_linker",
+    "pore_size",
+    "pore_size_unit",
+    "surface_area_BET",
+    "surface_area_BET_unit",
+    "pore_volume",
+    "pore_volume_unit",
+    "source_id",
+    "source_url",
+    "notes"
+  ],
   "input_sources": [
     {
-      "source_id": "paper_green_2018",
-      "pdf_id": "green_2018_thrombin_aptamer",
-      "pdf_path": "data/raw/pdf/green_2018_thrombin_aptamer.pdf",
-      "source_url": "https://doi.org/10.1021/example.2018",
-      "doi": "10.1021/example.2018",
-      "selection_reason": "Foundational open-access paper with tabulated Kd values for thrombin-binding aptamers.",
-      "pages_used": [3, 4, 5],
-      "expected_content": "Table 2 with aptamer sequences and SPR Kd values",
-      "extraction_methods": ["pdfplumber_table", "manual_verification"],
-      "extraction_status": "template_pending"
+      "source_id": "paper_uio66_nh2_sonochemical_2023",
+      "pdf_id": "uio66_nh2_sonochemical_2023",
+      "pdf_path": "data/raw/pdf/uio66_nh2_sonochemical_2023.pdf",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10645735/",
+      "doi": "10.1038/s41598-023-47221-6",
+      "publication_year": 2023,
+      "selection_reason": "Candidate paper for experimental CO2 adsorption capacity in UiO-66-NH2 with material characterization data.",
+      "pages_used": [
+        6,
+        7,
+        8
+      ],
+      "expected_content": [
+        "CO2 adsorption capacity",
+        "temperature and pressure",
+        "activation conditions",
+        "MOF formula/composition",
+        "metal node and organic linker",
+        "pore size, surface area, and pore volume"
+      ],
+      "target_schema_fields": [
+        "MOF_name",
+        "gas_type",
+        "temperature",
+        "temperature_unit",
+        "pressure",
+        "pressure_unit",
+        "capacity_value",
+        "capacity_unit",
+        "source_location"
+      ],
+      "target_material_fields": [
+        "MOF_name",
+        "chemical_formula",
+        "metal_node",
+        "organic_linker",
+        "pore_size",
+        "pore_size_unit",
+        "surface_area_BET",
+        "surface_area_BET_unit",
+        "pore_volume",
+        "pore_volume_unit"
+      ],
+      "extraction_methods": [
+        "pdfplumber_text",
+        "pdfplumber_table",
+        "manual_visual_figure_digitization",
+        "manual_verification"
+      ],
+      "extraction_status": "preview_parsed_not_promoted"
     },
     {
-      "source_id": "paper_lee_2020",
-      "pdf_id": "lee_2020_multiplex_panel",
-      "pdf_path": "data/raw/pdf/lee_2020_multiplex_panel.pdf",
-      "source_url": "https://doi.org/10.1038/example.2020",
-      "doi": "10.1038/example.2020",
-      "selection_reason": "Recent multiplex study with supplementary binding table.",
-      "pages_used": [12, 13],
-      "expected_content": "Main-text summary table and reference to Supplementary Table S3",
-      "extraction_methods": ["camelot_lattice", "manual_verification"],
-      "extraction_status": "template_pending"
+      "source_id": "paper_nanosized_cu_mofs_go_gas_storage",
+      "pdf_id": "nanosized_cu_mofs_go_gas_storage",
+      "pdf_path": "data/raw/pdf/nanosized_cu_mofs_go_gas_storage.pdf",
+      "source_url": "local user-provided PDF",
+      "doi": "10.1039/c3ee23421e",
+      "publication_year": 2013,
+      "selection_reason": "Contains Table 1 with Cu-BTC/GO composite surface area, pore volume, CO2 capacity, and H2 capacity plus isotherm figures.",
+      "pages_used": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "expected_content": [
+        "CO2 capacity at 273 K and 1 atm",
+        "H2 capacity at 77 K and 42 atm",
+        "BET surface area",
+        "pore volume",
+        "CO2/H2/CH4/N2 isotherm figures"
+      ],
+      "target_schema_fields": [
+        "MOF_name",
+        "gas_type",
+        "temperature",
+        "temperature_unit",
+        "pressure",
+        "pressure_unit",
+        "capacity_value",
+        "capacity_unit",
+        "source_location"
+      ],
+      "target_material_fields": [
+        "MOF_name",
+        "chemical_formula",
+        "metal_node",
+        "organic_linker",
+        "pore_size",
+        "pore_size_unit",
+        "surface_area_BET",
+        "surface_area_BET_unit",
+        "pore_volume",
+        "pore_volume_unit"
+      ],
+      "extraction_methods": [
+        "pdfplumber_text",
+        "manual_table_transcription",
+        "manual_visual_figure_digitization"
+      ],
+      "extraction_status": "preview_parsed_not_promoted"
     },
     {
-      "source_id": "paper_kim_2015",
-      "pdf_id": "kim_2015_lysozyme_aptamer",
-      "pdf_path": "data/raw/pdf/kim_2015_lysozyme_aptamer.pdf",
-      "source_url": "https://doi.org/10.1016/example.2015",
-      "doi": "10.1016/example.2015",
-      "selection_reason": "Older benchmark for lysozyme aptamer with clear assay description.",
-      "pages_used": [6, 7],
-      "expected_content": "Figure caption and Table 1 with Kd in nM",
-      "extraction_methods": ["pymupdf_text", "manual_verification"],
-      "extraction_status": "template_pending"
+      "source_id": "paper_nihms_1670563",
+      "pdf_id": "nihms_1670563",
+      "pdf_path": "data/raw/pdf/nihms_1670563.pdf",
+      "source_url": "local user-provided PDF",
+      "doi": "10.1002/adma.201907995",
+      "publication_year": 2020,
+      "selection_reason": "Contains NPF-200 H2 total/excess adsorption and working-capacity values.",
+      "pages_used": [
+        6,
+        12
+      ],
+      "expected_content": [
+        "H2 total adsorption at 77 K and 100 bar",
+        "H2 volumetric and gravimetric working capacity between 100 and 5 bar",
+        "H2 isotherm figure",
+        "pore volume"
+      ],
+      "target_schema_fields": [
+        "MOF_name",
+        "gas_type",
+        "temperature",
+        "temperature_unit",
+        "pressure",
+        "pressure_unit",
+        "capacity_value",
+        "capacity_unit",
+        "source_location"
+      ],
+      "target_material_fields": [
+        "MOF_name",
+        "chemical_formula",
+        "metal_node",
+        "organic_linker",
+        "pore_volume",
+        "pore_volume_unit"
+      ],
+      "extraction_methods": [
+        "pdfplumber_text",
+        "manual_visual_figure_digitization"
+      ],
+      "extraction_status": "preview_parsed_not_promoted"
     }
-  ]
+  ],
+  "quality_control": {
+    "required_before_accepting_row": [
+      "capacity value is numeric",
+      "capacity unit is present",
+      "temperature and pressure are present with units",
+      "MOF formula, metal node, organic linker, and pore size are present",
+      "MOF material descriptors are stored in data/extracted/pdf_parsed_materials.csv, not repeated in data/extracted/pdf_parsed_records.csv",
+      "source_id matches specs/source_map.json",
+      "page number or table/figure location is recorded in notes"
+    ],
+    "confidence_levels": {
+      "high": "value and unit taken from a text table and manually verified",
+      "medium": "value taken from text/figure caption with clear units",
+      "low": "value digitized from a plot or inferred from context"
+    }
+  }
 }

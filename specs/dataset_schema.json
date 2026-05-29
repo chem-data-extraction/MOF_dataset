@@ -1,14 +1,22 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "dataset_title": "MOF-based gas adsorption dataset",
-  "record_unit": "One gas adsorption measurement for one MOF material under one defined set of conditions.",
+  "record_unit": "One experimental gas adsorption measurement for one MOF material under one defined set of conditions.",
+  "normalization_note": "The primary table keeps the material descriptors required for analysis. If many measurements refer to the same MOF, these descriptors can later be normalized into a separate MOF materials table keyed by mof_id.",
   "fields": [
     {
       "name": "record_id",
       "type": "string",
       "required": true,
       "description": "Stable unique identifier for one adsorption measurement point.",
-      "example": "rec_uio66_co2_298k_1bar_001"
+      "example": "rec_mof001_co2_298k_1bar_001"
+    },
+    {
+      "name": "mof_id",
+      "type": "string",
+      "required": true,
+      "description": "Internal normalized identifier for one MOF material, used to link repeated measurements and a possible separate MOF materials table.",
+      "example": "mof_001"
     },
     {
       "name": "MOF_name",
@@ -18,25 +26,39 @@
       "example": "UiO-66"
     },
     {
+      "name": "chemical_formula",
+      "type": "string",
+      "required": true,
+      "description": "Chemical formula as reported by the source.",
+      "example": "Zr6O4(OH)4(BDC)6"
+    },
+    {
       "name": "metal_node",
       "type": "string",
-      "required": false,
-      "description": "Metal node or inorganic secondary building unit when reported.",
+      "required": true,
+      "description": "Metal node, metal ion, or inorganic secondary building unit.",
       "example": "Zr6 cluster"
     },
     {
       "name": "organic_linker",
       "type": "string",
-      "required": false,
+      "required": true,
       "description": "Organic linker or ligand used in the MOF.",
       "example": "terephthalate"
     },
     {
-      "name": "chemical_formula",
+      "name": "pore_size",
+      "type": "number",
+      "required": true,
+      "description": "Representative pore diameter or pore limiting diameter.",
+      "example": 8.0
+    },
+    {
+      "name": "pore_size_unit",
       "type": "string",
-      "required": false,
-      "description": "Chemical formula as reported by the source.",
-      "example": "Zr6O4(OH)4(BDC)6"
+      "required": true,
+      "description": "Unit for pore_size.",
+      "example": "A"
     },
     {
       "name": "CSD_refcode",
@@ -46,6 +68,27 @@
       "example": "RUBTAK"
     },
     {
+      "name": "MOFid",
+      "type": "string",
+      "required": false,
+      "description": "MOFid identifier when available.",
+      "example": "[O-]C(=O)c1ccc(cc1)C(=O)[O-].[Zn][O]([Zn])([Zn])[Zn] MOFid-v1.pcu.cat0"
+    },
+    {
+      "name": "MOFkey",
+      "type": "string",
+      "required": false,
+      "description": "MOFkey identifier when available.",
+      "example": "Zn.KKEYFWRCBNTPAC.MOFkey-v1.pcu"
+    },
+    {
+      "name": "source_material_id",
+      "type": "string",
+      "required": false,
+      "description": "Source-specific material identifier, such as a NIST hashkey or MOFX-DB id.",
+      "example": "NIST-MATDB-adbde35885cf5b9ed691e857234f8b49"
+    },
+    {
       "name": "topology",
       "type": "string",
       "required": false,
@@ -53,25 +96,46 @@
       "example": "fcu"
     },
     {
-      "name": "surface_area_BET_m2_g",
+      "name": "surface_area_BET",
       "type": "number",
       "required": false,
-      "description": "BET surface area in square meters per gram.",
+      "description": "BET surface area.",
       "example": 1200
     },
     {
-      "name": "pore_volume_cm3_g",
+      "name": "surface_area_BET_unit",
+      "type": "string",
+      "required": false,
+      "description": "Unit for surface_area_BET.",
+      "example": "m2/g"
+    },
+    {
+      "name": "pore_volume",
       "type": "number",
       "required": false,
-      "description": "Pore volume in cubic centimeters per gram.",
+      "description": "Pore volume.",
       "example": 0.55
     },
     {
-      "name": "pore_size_A",
+      "name": "pore_volume_unit",
+      "type": "string",
+      "required": false,
+      "description": "Unit for pore_volume.",
+      "example": "cm3/g"
+    },
+    {
+      "name": "molecular_weight",
       "type": "number",
       "required": false,
-      "description": "Representative pore diameter or pore limiting diameter in angstrom.",
-      "example": 8.0
+      "description": "Molecular or formula weight when reported or calculated.",
+      "example": 1663.0
+    },
+    {
+      "name": "molecular_weight_unit",
+      "type": "string",
+      "required": false,
+      "description": "Unit for molecular_weight.",
+      "example": "g/mol"
     },
     {
       "name": "gas_type",
@@ -95,11 +159,25 @@
       "example": 298.0
     },
     {
+      "name": "temperature_unit",
+      "type": "string",
+      "required": true,
+      "description": "Unit for temperature.",
+      "example": "K"
+    },
+    {
       "name": "pressure",
       "type": "number",
       "required": true,
       "description": "Measurement pressure.",
       "example": 1.0
+    },
+    {
+      "name": "pressure_unit",
+      "type": "string",
+      "required": true,
+      "description": "Unit for pressure.",
+      "example": "bar"
     },
     {
       "name": "measurement_type",
@@ -145,6 +223,13 @@
       "example": 25.0
     },
     {
+      "name": "selectivity_unit",
+      "type": "string",
+      "required": false,
+      "description": "Unit for selectivity, usually dimensionless.",
+      "example": "dimensionless"
+    },
+    {
       "name": "error_bar",
       "type": "number",
       "required": false,
@@ -152,11 +237,18 @@
       "example": 0.1
     },
     {
+      "name": "error_bar_unit",
+      "type": "string",
+      "required": false,
+      "description": "Unit for error_bar, normally the same unit as the measured value.",
+      "example": "mmol/g"
+    },
+    {
       "name": "isotherm_id",
       "type": "string",
       "required": false,
       "description": "Identifier linking multiple pressure points from the same isotherm.",
-      "example": "iso_uio66_co2_298k_article1"
+      "example": "iso_mof001_co2_298k_article1"
     },
     {
       "name": "DOI",
@@ -183,7 +275,7 @@
       "name": "source_type",
       "type": "string",
       "required": false,
-      "description": "Category of source: scientific_paper, supplementary_material, database, aggregator, github_repository, or public_dataset.",
+      "description": "Category of source: scientific_paper, database, aggregator, github_repository, huggingface_dataset, kaggle_dataset, or public_dataset.",
       "example": "database"
     },
     {
@@ -192,6 +284,13 @@
       "required": false,
       "description": "URL, DOI URL, or landing page for the source.",
       "example": "https://adsorption.nist.gov/isodb/index.php"
+    },
+    {
+      "name": "source_location",
+      "type": "string",
+      "required": false,
+      "description": "Generic locator inside the source, such as page 6 Figure 6, Table 1, or articleSource=Figure 2a.",
+      "example": "page 6 Figure 6"
     },
     {
       "name": "source_database",

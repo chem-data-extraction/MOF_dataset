@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.2.0",
+  "dataset_title": "MOF materials table",
+  "record_unit": "One MOF material identity record.",
+  "design_note": "This table stores descriptors that would otherwise be repeated for every pressure point in the measurement table.",
+  "fields": [
+    {"name": "mof_id", "type": "string", "required": true, "description": "Stable internal MOF identifier used by adsorption_measurements.csv."},
+    {"name": "MOF_name", "type": "string", "required": true, "description": "Reported or normalized MOF name."},
+    {"name": "chemical_formula", "type": "string", "required": false, "description": "Chemical formula as reported, calculated, or derived from CIF when available."},
+    {"name": "metal_node", "type": "string", "required": false, "description": "Metal node, metal ion, or inorganic building unit."},
+    {"name": "organic_linker", "type": "string", "required": false, "description": "Organic linker or ligand."},
+    {"name": "pore_size", "type": "number", "required": false, "description": "Representative pore diameter, pore limiting diameter, or source-reported pore size."},
+    {"name": "pore_size_unit", "type": "string", "required": false, "description": "Unit for pore_size."},
+    {"name": "surface_area_BET", "type": "number", "required": false, "description": "BET or source-reported surface area."},
+    {"name": "surface_area_BET_unit", "type": "string", "required": false, "description": "Unit for surface_area_BET."},
+    {"name": "pore_volume", "type": "number", "required": false, "description": "Pore volume."},
+    {"name": "pore_volume_unit", "type": "string", "required": false, "description": "Unit for pore_volume."},
+    {"name": "molecular_weight", "type": "number", "required": false, "description": "Molecular or formula weight when reported or calculated."},
+    {"name": "molecular_weight_unit", "type": "string", "required": false, "description": "Unit for molecular_weight."},
+    {"name": "topology", "type": "string", "required": false, "description": "Topology or net identifier."},
+    {"name": "CSD_refcode", "type": "string", "required": false, "description": "CSD refcode or related crystallographic identifier."},
+    {"name": "MOFid", "type": "string", "required": false, "description": "MOFid identifier when available."},
+    {"name": "MOFkey", "type": "string", "required": false, "description": "MOFkey identifier when available."},
+    {"name": "source_material_id", "type": "string", "required": false, "description": "Source-specific material identifier such as NIST hashkey or MOFX-DB id."},
+    {"name": "source_id", "type": "string", "required": true, "description": "Source supporting the material identity."},
+    {"name": "source_url", "type": "string", "required": false, "description": "URL for the material record or supporting source."},
+    {"name": "notes", "type": "string", "required": false, "description": "Aliases, missing-descriptor notes, or identity-resolution caveats."}
+  ]
+}

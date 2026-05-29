@@ -1,0 +1,253 @@
+[
+  {
+    "source_id": "paper_uio66_nh2_sonochemical_2023",
+    "pdf_id": "uio66_nh2_sonochemical_2023",
+    "path": "data/raw/pdf/uio66_nh2_sonochemical_2023.pdf",
+    "exists": true,
+    "page_count": 15,
+    "pages_with_hits": [
+      {
+        "page": 1,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "mmol",
+          "bar",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 4003,
+        "tables": 0
+      },
+      {
+        "page": 2,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "pore",
+          "mmol",
+          "UiO"
+        ],
+        "text_chars": 6668,
+        "tables": 0
+      },
+      {
+        "page": 3,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "pore",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 4312,
+        "tables": 0
+      },
+      {
+        "page": 4,
+        "keywords": [
+          "UiO"
+        ],
+        "text_chars": 482,
+        "tables": 0
+      },
+      {
+        "page": 5,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "pore",
+          "UiO"
+        ],
+        "text_chars": 1933,
+        "tables": 0
+      },
+      {
+        "page": 6,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "mmol",
+          "bar",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 2743,
+        "tables": 0
+      },
+      {
+        "page": 7,
+        "keywords": [
+          "CO2",
+          "adsorption",
+          "pore",
+          "mmol",
+          "bar",
+          "capacity"
+        ],
+        "text_chars": 4303,
+        "tables": 1
+      },
+      {
+        "page": 8,
+        "keywords": [
+          "CO2",
+          "adsorption",
+          "BET",
+          "capacity"
+        ],
+        "text_chars": 4510,
+        "tables": 1
+      },
+      {
+        "page": 9,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "mmol",
+          "bar",
+          "UiO"
+        ],
+        "text_chars": 4381,
+        "tables": 0
+      },
+      {
+        "page": 10,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "UiO"
+        ],
+        "text_chars": 1516,
+        "tables": 0
+      },
+      {
+        "page": 11,
+        "keywords": [
+          "adsorption",
+          "BET",
+          "mmol",
+          "bar",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 4188,
+        "tables": 0
+      },
+      {
+        "page": 12,
+        "keywords": [
+          "CO2",
+          "adsorption",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 6878,
+        "tables": 0
+      },
+      {
+        "page": 13,
+        "keywords": [
+          "adsorption",
+          "pore",
+          "bar",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 7497,
+        "tables": 0
+      },
+      {
+        "page": 14,
+        "keywords": [
+          "adsorption",
+          "UiO",
+          "capacity"
+        ],
+        "text_chars": 5048,
+        "tables": 0
+      }
+    ],
+    "tables_found": 2,
+    "table_summaries": [
+      {
+        "page": 7,
+        "table_index": 1,
+        "rows": 11,
+        "max_cols": 4,
+        "first_rows": [
+          [
+            "Isotherm model",
+            "Parameters",
+            "CO2 adsorption",
+            "N2 adsorption"
+          ],
+          [
+            "Langmuir",
+            "qm",
+            "7.222",
+            "1.702"
+          ],
+          [
+            null,
+            "KL",
+            "0.793",
+            "0.200"
+          ],
+          [
+            null,
+            "R2",
+            "0.999",
+            "0.999"
+          ],
+          [
+            "Freundlich",
+            "KF",
+            "3.262",
+            "0.286"
+          ]
+        ]
+      },
+      {
+        "page": 8,
+        "table_index": 1,
+        "rows": 10,
+        "max_cols": 3,
+        "first_rows": [
+          [
+            "Kinetic model",
+            "Parameters",
+            "CO2 adsorption"
+          ],
+          [
+            "Pseudo-first order",
+            "qe",
+            "2.836"
+          ],
+          [
+            null,
+            "K1",
+            "0.504"
+          ],
+          [
+            null,
+            "R2",
+            "0.822"
+          ],
+          [
+            "Pseudo-second order",
+            "qe",
+            "3.062"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "source_id": "paper_hkust1_composites_ch4_2023",
+    "pdf_id": "hkust1_composites_ch4_2023",
+    "path": "data/raw/pdf/hkust1_composites_ch4_2023.pdf",
+    "exists": false,
+    "status": "missing_pdf"
+  }
+]
