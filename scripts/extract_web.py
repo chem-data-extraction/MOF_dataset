@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Web/API probe driver for MOF database sources.
 
-Practice 4 uses conservative probes: download source snapshots, inspect whether
-an API response is available, and keep source category, units, and provenance
-metadata available for later review.
+The current release stores accepted web parser results directly in
+data/extracted/web_parsed_records.csv and data/extracted/web_parsed_materials.csv.
+Exploratory probe summaries are written to data/interim so data/extracted stays
+limited to the four publication input files.
 """
 
 from __future__ import annotations
@@ -18,9 +19,9 @@ from collections import Counter
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "specs/web_extraction_manifest.json"
-LOG_PATH = ROOT / "data/extracted/extraction_log.jsonl"
-WEB_CSV = ROOT / "data/extracted/web_extracted_records.csv"
-PROBE_SUMMARY = ROOT / "data/extracted/web_probe_summary.json"
+LOG_PATH = ROOT / "data/interim/extraction_log.jsonl"
+WEB_CSV = ROOT / "data/interim/web_probe_records.csv"
+PROBE_SUMMARY = ROOT / "data/interim/web_probe_summary.json"
 NIST_RAW_BASE = "https://raw.githubusercontent.com/NIST-ISODB/isodb-library/master/Library"
 WEB_MEASUREMENT_COLUMNS = [
     "MOF_name",
@@ -118,8 +119,8 @@ def detail_targets_from_api(batch: dict) -> list[dict]:
                 "mof_url": f"https://mof.tech.northwestern.edu/mofs/{mof_id}.json",
                 "raw_mof_path": f"data/raw/web/mofxdb_batch/{slug}.json",
                 "raw_isotherm_directory": f"data/raw/web/mofxdb_batch/{slug}_isotherms",
-                "material_summary_output": f"data/extracted/web_parse_preview/mofxdb_batch/materials/{slug}.json",
-                "isotherm_points_output": f"data/extracted/web_parse_preview/mofxdb_batch/isotherms/{slug}_isotherm_points.csv",
+                "material_summary_output": f"data/interim/web_probe_outputs/mofxdb_batch/materials/{slug}.json",
+                "isotherm_points_output": f"data/interim/web_probe_outputs/mofxdb_batch/isotherms/{slug}_isotherm_points.csv",
             }
         )
         if len(targets) >= int(batch.get("limit", 10)):
@@ -270,7 +271,7 @@ def parse_nist_mirror_batch(batch: dict) -> dict:
             key: value.get("name", "")
             for key, value in adsorbates_by_key.items()
         }
-        fallback_gas_name = "+".join(a.get("name", "") for a in iso.get("adsorbates", [])).strip("+")
+        fallback_gas_label = "+".join(a.get("name", "") for a in iso.get("adsorbates", [])).strip("+")
         fallback_gas_formula = "+".join(
             adsorbate_formula_by_key.get(a.get("InChIKey"), "") for a in iso.get("adsorbates", [])
         ).strip("+")
@@ -279,11 +280,11 @@ def parse_nist_mirror_batch(batch: dict) -> dict:
             species_rows = point.get("species_data") or [{}]
             for sp in species_rows:
                 inchikey = sp.get("InChIKey", "")
-                gas_name = adsorbate_name_by_key.get(inchikey) or fallback_gas_name
+                gas_label = adsorbate_name_by_key.get(inchikey) or fallback_gas_label
                 gas_formula = adsorbate_formula_by_key.get(inchikey) or fallback_gas_formula
                 point_rows.append(
                     {
-                        "record_id": f"nist_{safe_slug(filename)}_p{idx}_{safe_slug(gas_name or 'gas')}",
+                        "record_id": f"nist_{safe_slug(filename)}_p{idx}_{safe_slug(gas_label or 'gas')}",
                         "mof_id": hashkey,
                         "MOF_name": adsorbent.get("name") or adsorbent_ref.get("name"),
                         "chemical_formula": adsorbent.get("formula", ""),
@@ -291,22 +292,16 @@ def parse_nist_mirror_batch(batch: dict) -> dict:
                         "organic_linker": "",
                         "pore_size": "",
                         "pore_size_unit": "",
-                        "CSD_refcode": "",
-                        "MOFid": "",
-                        "MOFkey": "",
                         "source_material_id": hashkey,
-                        "topology": "",
                         "surface_area_BET": "",
                         "surface_area_BET_unit": "",
                         "pore_volume": "",
                         "pore_volume_unit": "",
                         "gas_type": gas_formula,
-                        "gas_name": gas_name,
                         "temperature": iso.get("temperature"),
                         "temperature_unit": "K",
                         "pressure": point.get("pressure"),
                         "pressure_unit": iso.get("pressureUnits"),
-                        "measurement_type": "capacity",
                         "capacity_value": sp.get("adsorption", point.get("total_adsorption")),
                         "capacity_unit": iso.get("adsorptionUnits"),
                         "isotherm_id": filename,
@@ -382,10 +377,6 @@ def parse_mofxdb_detail(target: dict) -> dict:
     formula = " ".join(f"{symbol}{count}" for symbol, count in atom_counts.items())
     metals = metal_symbols(mof.get("elements", []))
     mofid = mof.get("mofid") or ""
-    topology = ""
-    if "MOFid-v1." in mofid:
-        topology = mofid.split("MOFid-v1.")[-1].split(".")[0]
-
     material_summary = {
         "source_id": target["source_id"],
         "mofdb_id": mof.get("id"),
@@ -396,8 +387,7 @@ def parse_mofxdb_detail(target: dict) -> dict:
         "surface_area_m2g": mof.get("surface_area_m2g"),
         "surface_area_m2cm3": mof.get("surface_area_m2cm3"),
         "void_fraction": mof.get("void_fraction"),
-        "mofid": mofid,
-        "mofkey": mof.get("mofkey"),
+        "source_identifier_note": "MOF-specific identifiers are available in raw MOFX-DB JSON.",
         "database": mof.get("database"),
         "elements": [e.get("symbol") for e in mof.get("elements", [])],
         "cif_atom_count_formula_preview": formula,
@@ -420,7 +410,7 @@ def parse_mofxdb_detail(target: dict) -> dict:
         iso = fetch_json(iso_url, raw_iso_path)
         adsorbates = iso.get("adsorbates") or []
         gas_formula = "+".join(a.get("formula", "") for a in adsorbates).strip("+")
-        gas_name = "+".join(a.get("name", "") for a in adsorbates).strip("+")
+        gas_label = "+".join(a.get("name", "") for a in adsorbates).strip("+")
         formula_by_name = {a.get("name"): a.get("formula") for a in adsorbates if a.get("name")}
         for idx, point in enumerate(iso.get("isotherm_data", []), start=1):
             species = point.get("species_data") or []
@@ -435,25 +425,19 @@ def parse_mofxdb_detail(target: dict) -> dict:
                         "MOF_name": mof.get("name"),
                         "chemical_formula": formula,
                         "metal_node": metals,
-                        "organic_linker": "from MOFid/CIF; not normalized yet",
+                        "organic_linker": "from CIF; not normalized yet",
                         "pore_size": mof.get("pld"),
                         "pore_size_unit": "A",
-                        "CSD_refcode": "",
-                        "MOFid": mofid,
-                        "MOFkey": mof.get("mofkey") or "",
                         "source_material_id": str(mof.get("id") or ""),
-                        "topology": topology,
                         "surface_area_BET": mof.get("surface_area_m2g"),
                         "surface_area_BET_unit": "m2/g",
                         "pore_volume": "",
                         "pore_volume_unit": "",
                         "gas_type": sp.get("formula") or formula_by_name.get(sp.get("name")) or gas_formula,
-                        "gas_name": sp.get("name") or gas_name,
                         "temperature": iso.get("temperature"),
                         "temperature_unit": "K",
                         "pressure": point.get("pressure"),
                         "pressure_unit": iso.get("pressureUnits"),
-                        "measurement_type": "capacity",
                         "capacity_value": sp.get("adsorption", point.get("total_adsorption")),
                         "capacity_unit": iso.get("adsorptionUnits"),
                         "isotherm_id": str(iso.get("id", iso_id)),

@@ -2,7 +2,7 @@
   "schema_version": "0.2.0",
   "dataset_title": "MOF-based gas adsorption dataset",
   "record_unit": "One experimental gas adsorption measurement for one MOF material under one defined set of conditions.",
-  "normalization_note": "The flat dataset keeps measurement and material fields together for compatibility. The publication layout also provides normalized tables: data/processed/mof_materials.csv and data/processed/adsorption_measurements.csv linked by mof_id.",
+  "normalization_note": "This schema is used for the internal merged table. The publication layout uses normalized tables: data/processed/mof_materials.csv and data/processed/adsorption_measurements.csv linked by mof_id.",
   "fields": [
     {
       "name": "record_id",
@@ -61,39 +61,11 @@
       "example": "A"
     },
     {
-      "name": "CSD_refcode",
-      "type": "string",
-      "required": false,
-      "description": "Cambridge Structural Database refcode or related structural identifier.",
-      "example": "RUBTAK"
-    },
-    {
-      "name": "MOFid",
-      "type": "string",
-      "required": false,
-      "description": "MOFid identifier when available.",
-      "example": "[O-]C(=O)c1ccc(cc1)C(=O)[O-].[Zn][O]([Zn])([Zn])[Zn] MOFid-v1.pcu.cat0"
-    },
-    {
-      "name": "MOFkey",
-      "type": "string",
-      "required": false,
-      "description": "MOFkey identifier when available.",
-      "example": "Zn.KKEYFWRCBNTPAC.MOFkey-v1.pcu"
-    },
-    {
       "name": "source_material_id",
       "type": "string",
       "required": false,
       "description": "Source-specific material identifier, such as a NIST hashkey or MOFX-DB id.",
       "example": "NIST-MATDB-adbde35885cf5b9ed691e857234f8b49"
-    },
-    {
-      "name": "topology",
-      "type": "string",
-      "required": false,
-      "description": "MOF topology/net identifier when available.",
-      "example": "fcu"
     },
     {
       "name": "surface_area_BET",
@@ -124,32 +96,11 @@
       "example": "cm3/g"
     },
     {
-      "name": "molecular_weight",
-      "type": "number",
-      "required": false,
-      "description": "Molecular or formula weight when reported or calculated.",
-      "example": 1663.0
-    },
-    {
-      "name": "molecular_weight_unit",
-      "type": "string",
-      "required": false,
-      "description": "Unit for molecular_weight.",
-      "example": "g/mol"
-    },
-    {
       "name": "gas_type",
       "type": "string",
       "required": true,
       "description": "Adsorbate gas formula or gas pair for selectivity records.",
       "example": "CO2"
-    },
-    {
-      "name": "gas_name",
-      "type": "string",
-      "required": false,
-      "description": "Human-readable gas name.",
-      "example": "carbon dioxide"
     },
     {
       "name": "temperature",
@@ -178,13 +129,6 @@
       "required": true,
       "description": "Unit for pressure.",
       "example": "bar"
-    },
-    {
-      "name": "measurement_type",
-      "type": "string",
-      "required": false,
-      "description": "Kind of adsorption result, such as capacity, selectivity, working_capacity, or heat_of_adsorption.",
-      "example": "capacity"
     },
     {
       "name": "measurement_method",

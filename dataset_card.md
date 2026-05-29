@@ -6,7 +6,7 @@ MOF-based gas adsorption dataset.
 
 ## Dataset summary
 
-This dataset contains parsed gas adsorption measurements for metal-organic framework materials. Records include gas identity, temperature, pressure, capacity value, capacity unit, source DOI/URL, and source location. Material descriptors are stored separately where available.
+This dataset contains parsed gas adsorption measurements for metal-organic framework materials. Records include gas identity, temperature, pressure, capacity value, capacity unit, source DOI/URL, and source location. Material descriptors are stored in a separate table where available.
 
 ## Scientific task
 
@@ -20,7 +20,6 @@ One row in `data/processed/adsorption_measurements.csv` is one gas adsorption me
 
 | File | Rows | Description |
 |---|---:|---|
-| `data/processed/dataset.csv` | 541 | flat publication table |
 | `data/processed/adsorption_measurements.csv` | 541 | measurement table |
 | `data/processed/mof_materials.csv` | 19 | MOF material table |
 
@@ -31,8 +30,8 @@ Sources include scientific PDF articles, MOFX-DB, and the NIST ISODB GitHub API 
 ## Extraction procedure
 
 1. PDF parsing is documented by `scripts/extract_pdf.py` and `specs/pdf_extraction_manifest.json`.
-2. Web/API parsing is implemented in `scripts/extract_web.py` and `specs/web_extraction_manifest.json`.
-3. Parsed source-specific tables are built by `scripts/build_preview_tables.py`.
+2. Web/API parsing is documented by `scripts/extract_web.py` and `specs/web_extraction_manifest.json`.
+3. Parsed source-specific CSV files are stored in `data/extracted/`.
 4. Final processed tables are built by `scripts/build_dataset.py` and `scripts/clean_dataset.py`.
 5. Validation is performed by `scripts/validate_project.py`.
 

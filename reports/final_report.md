@@ -24,15 +24,18 @@ PDF extraction produced 212 measurement records and 6 material records. Web/API 
 
 ## Cleaning And Normalization
 
-The final dataset is built by joining parsed measurement rows with material descriptor rows. Units are preserved as reported and stored in explicit unit columns. Duplicate `record_id` values are removed during cleaning. Normalized outputs are:
+The final dataset is built by joining parsed measurement rows with material descriptor rows. Units are preserved as reported and stored in explicit unit columns. Duplicate `record_id` values are removed during cleaning.
+
+Final normalized outputs:
 
 - `data/processed/adsorption_measurements.csv`
 - `data/processed/mof_materials.csv`
-- `data/processed/dataset.csv`
+
+A single flat `dataset.csv` is not included because the project uses a normalized two-table publication format.
 
 ## Validation
 
-`scripts/validate_project.py` passes. The validation checks required files, schema alignment, unique record identifiers, valid source identifiers, and numeric capacity values.
+`scripts/validate_project.py` passes. The validation checks required files, schema alignment, unique identifiers, valid source identifiers, material-measurement links, and numeric capacity values.
 
 ## Limitations
 
@@ -45,10 +48,10 @@ The final dataset is built by joining parsed measurement rows with material desc
 
 | Artifact | Path |
 |---|---|
-| Flat dataset | `data/processed/dataset.csv` |
 | Measurement table | `data/processed/adsorption_measurements.csv` |
 | Material table | `data/processed/mof_materials.csv` |
-| Schema | `specs/dataset_schema.json` |
+| Measurement schema | `specs/adsorption_measurements_schema.json` |
+| Material schema | `specs/mof_materials_schema.json` |
 | Source map | `specs/source_map.json` |
 | Dataset card | `dataset_card.md` |
 | Citation | `CITATION.cff` |

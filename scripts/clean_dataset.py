@@ -14,7 +14,6 @@ MERGED_PATH = ROOT / "data/interim/merged_records.csv"
 SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
 MOF_SCHEMA_PATH = ROOT / "specs/mof_materials_schema.json"
 MEASUREMENT_SCHEMA_PATH = ROOT / "specs/adsorption_measurements_schema.json"
-DATASET_PATH = ROOT / "data/processed/dataset.csv"
 MOF_TABLE_PATH = ROOT / "data/processed/mof_materials.csv"
 MEASUREMENT_TABLE_PATH = ROOT / "data/processed/adsorption_measurements.csv"
 
@@ -23,7 +22,6 @@ NUMERIC_COLUMNS = {
     "pore_size",
     "surface_area_BET",
     "pore_volume",
-    "molecular_weight",
     "temperature",
     "pressure",
     "capacity_value",
@@ -100,10 +98,8 @@ def main() -> None:
             df[col] = None
     df = df[columns]
     cleaned = clean_dataframe(df)
-    DATASET_PATH.parent.mkdir(parents=True, exist_ok=True)
-    cleaned.to_csv(DATASET_PATH, index=False)
     write_normalized_tables(cleaned)
-    print(f"Wrote {len(cleaned)} cleaned rows to {DATASET_PATH.relative_to(ROOT)}")
+    print(f"Cleaned {len(cleaned)} merged rows")
 
 
 def write_normalized_tables(df: pd.DataFrame) -> None:
@@ -127,6 +123,8 @@ def write_normalized_tables(df: pd.DataFrame) -> None:
     MOF_TABLE_PATH.parent.mkdir(parents=True, exist_ok=True)
     material_df.to_csv(MOF_TABLE_PATH, index=False)
     measurement_df.to_csv(MEASUREMENT_TABLE_PATH, index=False)
+    print(f"Wrote {len(material_df)} rows to {MOF_TABLE_PATH.relative_to(ROOT)}")
+    print(f"Wrote {len(measurement_df)} rows to {MEASUREMENT_TABLE_PATH.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

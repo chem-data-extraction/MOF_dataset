@@ -17,7 +17,6 @@ PDF_MATERIALS = ROOT / "data/extracted/pdf_parsed_materials.csv"
 WEB_MATERIALS = ROOT / "data/extracted/web_parsed_materials.csv"
 SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
 MERGED_PATH = ROOT / "data/interim/merged_records.csv"
-DATASET_PATH = ROOT / "data/processed/dataset.csv"
 
 SOURCE_TYPES = {
     "paper_uio66_nh2_sonochemical_2023": "scientific_paper",
@@ -181,7 +180,6 @@ def build() -> pd.DataFrame:
         out["MOF_name"] = name
         out["mof_id"] = material.get("mof_id") or material_id(source_id, name)
         out["record_id"] = build_record_id(out, index)
-        out["measurement_type"] = out.get("measurement_type") or "capacity"
         out["source_type"] = out.get("source_type") or SOURCE_TYPES.get(source_id, "")
         out["source_database"] = out.get("source_database") or SOURCE_DATABASES.get(source_id, "")
         out["extraction_confidence"] = out.get("extraction_confidence") or "medium"
@@ -196,14 +194,11 @@ def build() -> pd.DataFrame:
 
 def main() -> None:
     MERGED_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DATASET_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     df = build()
     df.to_csv(MERGED_PATH, index=False)
-    df.to_csv(DATASET_PATH, index=False)
 
     print(f"Wrote {len(df)} rows to {MERGED_PATH.relative_to(ROOT)}")
-    print(f"Wrote {len(df)} rows to {DATASET_PATH.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

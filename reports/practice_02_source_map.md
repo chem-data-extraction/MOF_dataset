@@ -33,7 +33,7 @@ The machine-readable source map is maintained in `specs/source_map.json`. The cu
 |-------------|---------------|
 | Adsorption databases | JSON/XML/CSV/API records, isotherm point tables, material registry identifiers, DOI references |
 | Scientific papers | PDF text, tables, figure captions, methods sections, reported capacity/selectivity values |
-| Structural databases | CIF files, CSD refcodes, topology, pore descriptors, surface area/pore volume metadata |
+| Structural databases | CIF files, pore descriptors, surface area/pore volume metadata |
 | GitHub repositories | CSV/JSON files, notebooks, extraction scripts, preprocessing pipelines, README provenance |
 | Hugging Face datasets | Dataset cards, benchmark subsets, MOF capacity tasks, structure files, metadata files |
 | Kaggle datasets | CSV descriptors, fingerprints, RAC features, target labels for MOF property prediction |

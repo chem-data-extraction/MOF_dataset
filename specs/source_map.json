@@ -103,7 +103,7 @@
         "extraction_strategy": {
           "recommended_method": "use Table 1 as high-confidence source; keep figure digitization as low-confidence preview until QA"
         },
-        "notes": "Preview parsing produced candidate records in data/extracted/pdf_parse_preview/."
+        "notes": "Parsed records are stored in data/extracted/pdf_parsed_records.csv and data/extracted/pdf_parsed_materials.csv."
       },
       {
         "source_id": "paper_nihms_1670563",
@@ -135,7 +135,7 @@
         "extraction_strategy": {
           "recommended_method": "use text endpoints as candidate records; verify MOF formula/linker and pressure-range semantics before final inclusion"
         },
-        "notes": "Preview parsing produced candidate records in data/extracted/pdf_parse_preview/."
+        "notes": "Parsed records are stored in data/extracted/pdf_parsed_records.csv and data/extracted/pdf_parsed_materials.csv."
       }
     ],
     "databases": [
@@ -184,7 +184,7 @@
         "expected_data_content": [
           "MOF identifiers",
           "CIF structures",
-          "MOFid and MOFkey",
+          "source-specific MOF identifiers",
           "largest cavity diameter",
           "pore limiting diameter",
           "adsorption isotherm metadata",
@@ -203,7 +203,7 @@
         "expected_conflicts": [
           "source category metadata requires review before larger-scale reuse",
           "ambiguous unit labels in some isotherm objects",
-          "MOF identity differs between display name, MOFid, MOFkey, and CIF content"
+          "MOF identity differs between display name, source identifier, and CIF content"
         ],
         "extraction_strategy": {
           "recommended_method": "small API probes first; keep records only with clear source category metadata, units, and license notes"

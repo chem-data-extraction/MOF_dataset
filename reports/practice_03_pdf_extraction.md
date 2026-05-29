@@ -1,8 +1,7 @@
 # Practice 3 - PDF Extraction
 
 > PDF-only parsed output: `data/extracted/pdf_parsed_records.csv`  
-> PDF-only material output: `data/extracted/pdf_parsed_materials.csv`  
-> Official accepted output: `data/extracted/pdf_extracted_records.csv` (header-only for now)
+> PDF-only material output: `data/extracted/pdf_parsed_materials.csv`
 
 ## Selected PDF Sources
 
@@ -96,13 +95,8 @@ Current parsing logic:
 
 | File | Records | Notes |
 |---|---:|---|
-| `data/extracted/pdf_parsed_records.csv` | 212 | PDF-only parsed measurement preview |
-| `data/extracted/pdf_parsed_materials.csv` | 6 | PDF-only parsed material preview |
-| `data/extracted/pdf_extracted_records.csv` | 0 | Official accepted PDF records; header-only for now |
-| `data/extracted/pdf_parse_preview/uio66_candidate_records.csv` | 2 | UiO-66 text/Figure 6 candidate values |
-| `data/extracted/pdf_parse_preview/uio66_figure6_digitized_points.csv` | 72 | UiO-66 Figure 6 digitized isotherm points |
-| `data/extracted/pdf_parse_preview/new_pdf_candidate_records.csv` | 11 | Cu-MOF/GO Table 1 and NPF-200 text candidates |
-| `data/extracted/pdf_parse_preview/manual_visual_digitized_isotherms.csv` | 138 | manually digitized isotherm points from Cu-MOF/GO and NPF-200 figures |
+| `data/extracted/pdf_parsed_records.csv` | 212 | PDF-only parsed measurement records |
+| `data/extracted/pdf_parsed_materials.csv` | 6 | PDF-only parsed material records |
 | `data/raw/pdf/uio66_nh2_sonochemical_2023.pdf` | - | source PDF |
 | `data/raw/pdf/nanosized_cu_mofs_go_gas_storage.pdf` | - | source PDF |
 | `data/raw/pdf/nihms_1670563.pdf` | - | source PDF |

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """PDF extraction driver for MOF adsorption sources.
 
-The official accepted PDF table remains header-only until records are manually
-promoted. Parser previews are collected separately by build_preview_tables.py.
+The current release stores accepted PDF parser results directly in
+data/extracted/pdf_parsed_records.csv and data/extracted/pdf_parsed_materials.csv.
 """
 
 from __future__ import annotations
@@ -13,10 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "specs/pdf_extraction_manifest.json"
-LOG_PATH = ROOT / "data/extracted/extraction_log.jsonl"
-SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
-OUTPUT_PATH = ROOT / "data/extracted/pdf_extracted_records.csv"
-PDF_EXTRA_COLUMNS = ["pdf_id", "page", "table_or_figure", "extraction_notes"]
+LOG_PATH = ROOT / "data/interim/extraction_log.jsonl"
+PDF_RECORDS = ROOT / "data/extracted/pdf_parsed_records.csv"
+PDF_MATERIALS = ROOT / "data/extracted/pdf_parsed_materials.csv"
 
 
 def append_log(entry: dict) -> None:
@@ -25,28 +24,15 @@ def append_log(entry: dict) -> None:
         f.write(json.dumps(entry) + "\n")
 
 
-def schema_columns() -> list[str]:
-    with SCHEMA_PATH.open(encoding="utf-8") as f:
-        schema = json.load(f)
-    return [field["name"] for field in schema["fields"]]
-
-
-def ensure_output_header() -> None:
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    columns = schema_columns() + PDF_EXTRA_COLUMNS
-    OUTPUT_PATH.write_text(",".join(columns) + "\n", encoding="utf-8")
-
-
 def main() -> None:
     with MANIFEST.open(encoding="utf-8") as f:
         manifest = json.load(f)
 
     print(manifest.get("pdf_extraction_process", "PDF extraction"))
-    print(f"Output: {manifest.get('output_records_file')}")
-    print(f"Parsed measurement preview: {manifest.get('parsed_measurement_preview_file')}")
-    print(f"Parsed material preview: {manifest.get('parsed_material_preview_file')}")
-    ensure_output_header()
-    print("Created schema-aligned header-only PDF extraction CSV.")
+    print(f"Parsed measurement file: {PDF_RECORDS.relative_to(ROOT)}")
+    print(f"Parsed material file: {PDF_MATERIALS.relative_to(ROOT)}")
+    print(f"Measurement rows file exists: {PDF_RECORDS.is_file()}")
+    print(f"Material rows file exists: {PDF_MATERIALS.is_file()}")
     print("\nPDFs to process:")
 
     for src in manifest.get("input_sources", []):
@@ -62,10 +48,13 @@ def main() -> None:
             "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "step": "pdf_extraction",
             "source_id": "pdf_manifest",
-            "status": "planned_no_rows_extracted",
+            "status": "parsed_files_checked",
             "tool": "extract_pdf.py",
-            "output": str(manifest.get("output_records_file")),
-            "issue": "Official accepted PDF CSV is header-only; parser preview rows are stored in PDF-only preview files",
+            "output": [
+                str(PDF_RECORDS.relative_to(ROOT)),
+                str(PDF_MATERIALS.relative_to(ROOT)),
+            ],
+            "issue": "Current release uses the two PDF parsed CSV files directly.",
         }
     )
     print(f"\nAppended planning event to {LOG_PATH.relative_to(ROOT)}")

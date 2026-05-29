@@ -14,22 +14,21 @@ One measurement record is one gas adsorption measurement for one MOF material un
 
 | Path | Description |
 |---|---|
-| `data/processed/dataset.csv` | final flat dataset aligned with `specs/dataset_schema.json` |
-| `data/processed/mof_materials.csv` | normalized material table, one row per MOF identity |
-| `data/processed/adsorption_measurements.csv` | normalized measurement table, one row per adsorption point |
+| `data/processed/mof_materials.csv` | final material table, one row per MOF identity |
+| `data/processed/adsorption_measurements.csv` | final measurement table, one row per adsorption point |
 | `data/extracted/pdf_parsed_records.csv` | parsed PDF measurement records |
 | `data/extracted/pdf_parsed_materials.csv` | parsed PDF material descriptors |
 | `data/extracted/web_parsed_records.csv` | parsed web/API measurement records |
 | `data/extracted/web_parsed_materials.csv` | parsed web/API material descriptors |
 
-The processed dataset currently contains 541 measurement records and 19 MOF material records.
+The processed dataset currently contains 541 measurement records and 19 MOF material records. A single wide `dataset.csv` is not published because the normalized two-table design avoids repeated material descriptors and many empty columns.
 
 ## Repository structure
 
 | Path | Role |
 |---|---|
 | `specs/` | schemas, source map, extraction manifests, cleaning pipeline, validation rules |
-| `scripts/` | extraction, parsing, build, cleaning, and validation scripts |
+| `scripts/` | extraction, build, cleaning, and validation scripts |
 | `data/raw/` | local PDFs and web/API snapshots used by parsers |
 | `data/extracted/` | parsed source-specific outputs |
 | `data/interim/` | merged dataset before final cleaning |
@@ -45,12 +44,9 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the full local pipeline:
+Build and validate the final publication tables:
 
 ```bash
-py -3 scripts/extract_pdf.py
-py -3 scripts/extract_web.py
-py -3 scripts/build_preview_tables.py
 py -3 scripts/build_dataset.py
 py -3 scripts/clean_dataset.py
 py -3 scripts/validate_project.py
@@ -59,12 +55,10 @@ py -3 -m pytest
 
 Notes:
 
-- `extract_pdf.py` creates the accepted PDF extraction header and documents local PDF sources.
-- `extract_web.py` downloads small MOFX-DB and NIST ISODB JSON batches.
-- `build_preview_tables.py` creates separated PDF/web parsed tables.
-- `build_dataset.py` joins parsed measurements with material descriptors and writes `data/interim/merged_records.csv` plus `data/processed/dataset.csv`.
-- `clean_dataset.py` normalizes missing values, deduplicates records, and writes the normalized processed tables.
-- `validate_project.py` checks required files, schema alignment, `record_id`, `source_id`, and numeric capacity values.
+- `build_dataset.py` joins parsed PDF/web measurements with material descriptors and writes `data/interim/merged_records.csv`.
+- `clean_dataset.py` normalizes missing values, deduplicates records, and writes the two processed tables.
+- `validate_project.py` checks required files, schema alignment, unique identifiers, source identifiers, and numeric capacity values.
+- `extract_pdf.py` and `extract_web.py` document the extraction approach and can be extended for future source expansion; the current release uses the four committed parsed CSV files in `data/extracted/`.
 
 ## Sources
 
