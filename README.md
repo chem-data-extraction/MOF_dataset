@@ -1,88 +1,97 @@
-# Aptamer–protein binding dataset (project template)
+# MOF-based gas adsorption dataset
 
-Publication-ready **dataset project template** for the course *Extraction and preparation of chemical information*. Students move from a research topic to a structured, validated dataset with documented sources, extraction steps, cleaning pipeline, reports, and citation metadata.
-
-**Example topic:** Aptamer–protein binding dataset (replace with your own project in `project.json`).
+This repository contains a reproducible course dataset project for metal-organic frameworks (MOFs) and gas adsorption capacity measurements.
 
 ## Scientific task
 
-Collect experimentally reported aptamer–protein binding measurements (sequences, targets, affinity values, assay context) so they can be compared across literature and database sources.
+Collect adsorption measurements for MOF materials and relate gas capacity to material descriptors such as formula, pore size, surface area, and structural identifiers under defined experimental conditions.
 
-## What is one record?
+## Record definition
 
-One **record** = one experimentally reported aptamer–protein binding measurement from a specific source (one row in `data/processed/dataset.csv`). See `project.json` and `reports/practice_01_record_and_schema.md`.
+One measurement record is one gas adsorption measurement for one MOF material under one defined set of conditions. Most records correspond to one pressure-capacity point from an isotherm.
+
+## Dataset files
+
+| Path | Description |
+|---|---|
+| `data/processed/dataset.csv` | final flat dataset aligned with `specs/dataset_schema.json` |
+| `data/processed/mof_materials.csv` | normalized material table, one row per MOF identity |
+| `data/processed/adsorption_measurements.csv` | normalized measurement table, one row per adsorption point |
+| `data/extracted/pdf_parsed_records.csv` | parsed PDF measurement records |
+| `data/extracted/pdf_parsed_materials.csv` | parsed PDF material descriptors |
+| `data/extracted/web_parsed_records.csv` | parsed web/API measurement records |
+| `data/extracted/web_parsed_materials.csv` | parsed web/API material descriptors |
+
+The processed dataset currently contains 541 measurement records and 19 MOF material records.
 
 ## Repository structure
 
 | Path | Role |
-|------|------|
-| `project.json` | Machine-readable project metadata |
-| `specs/` | JSON schemas, source map, manifests, pipeline, validation rules |
-| `data/raw/` | Unmodified PDFs, web snapshots, external exports |
-| `data/extracted/` | Extraction outputs (CSV + `extraction_log.jsonl`) |
-| `data/interim/` | Merged table before final cleaning |
-| `data/processed/` | Publication dataset (`dataset.csv`) |
-| `scripts/` | Reproducible extract, build, clean, validate |
-| `reports/` | Human-readable practice and final reports |
-| `notebooks/` | Optional exploration only |
-| `tests/` | Pytest checks for required artifacts |
+|---|---|
+| `specs/` | schemas, source map, extraction manifests, cleaning pipeline, validation rules |
+| `scripts/` | extraction, parsing, build, cleaning, and validation scripts |
+| `data/raw/` | local PDFs and web/API snapshots used by parsers |
+| `data/extracted/` | parsed source-specific outputs |
+| `data/interim/` | merged dataset before final cleaning |
+| `data/processed/` | final publication tables |
+| `reports/` | practice reports and final report |
+| `tests/` | regression tests for required artifacts |
 
-**Formats:** JSON for specs and manifests; CSV for tabular data; Python for pipelines; Markdown for reports and documentation only. Notebooks are optional.
+## Reproduce the dataset
 
-## Five course practices
-
-Develop the repository in five steps (see `reports/`):
-
-1. **Record definition and dataset schema** — `specs/dataset_schema.json`, Practice 1 report  
-2. **Source map** — `specs/source_map.json`, Practice 2 report  
-3. **PDF extraction** — `specs/pdf_extraction_manifest.json`, `scripts/extract_pdf.py`, Practice 3 report  
-4. **Web extraction** — `specs/web_extraction_manifest.json`, `scripts/extract_web.py`, Practice 4 report  
-5. **Cleaning, normalization and publication** — `specs/cleaning_pipeline.json`, cleaning scripts, Practice 5 report  
-
-Complete **`reports/final_report.md`** and **`dataset_card.md`** before submission.
-
-## Data pipeline
-
-```text
-raw (PDF / web / external)
-  → extract (pdf + web scripts) → data/extracted/*.csv
-  → build (merge) → data/interim/merged_records.csv
-  → clean → data/processed/dataset.csv
-  → validate (rules + pytest)
-```
-
-## Required final artifacts
-
-- `data/processed/dataset.csv` aligned with `specs/dataset_schema.json`
-- Updated `specs/source_map.json` and extraction manifests
-- Practice reports 1–5 and `reports/final_report.md`
-- `dataset_card.md`, `LICENSE`, `CITATION.cff`
-- Passing validation and tests
-
-## How to run validation
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
-python scripts/validate_project.py
-pytest
 ```
 
-## How to build the dataset
+Run the full local pipeline:
 
 ```bash
-python scripts/build_dataset.py    # merge extracts → interim + processed
-python scripts/clean_dataset.py    # normalize and write processed dataset
+py -3 scripts/extract_pdf.py
+py -3 scripts/extract_web.py
+py -3 scripts/build_preview_tables.py
+py -3 scripts/build_dataset.py
+py -3 scripts/clean_dataset.py
+py -3 scripts/validate_project.py
+py -3 -m pytest
 ```
 
-Placeholder extraction (no PDF/HTML libraries required):
+Notes:
 
-```bash
-python scripts/extract_pdf.py
-python scripts/extract_web.py
-```
+- `extract_pdf.py` creates the accepted PDF extraction header and documents local PDF sources.
+- `extract_web.py` downloads small MOFX-DB and NIST ISODB JSON batches.
+- `build_preview_tables.py` creates separated PDF/web parsed tables.
+- `build_dataset.py` joins parsed measurements with material descriptors and writes `data/interim/merged_records.csv` plus `data/processed/dataset.csv`.
+- `clean_dataset.py` normalizes missing values, deduplicates records, and writes the normalized processed tables.
+- `validate_project.py` checks required files, schema alignment, `record_id`, `source_id`, and numeric capacity values.
 
-## License and citation
+## Sources
 
-- Replace the placeholder in **`LICENSE`** before publication (e.g. CC-BY-4.0 or CC0-1.0, subject to upstream source licenses).
-- Fill in **`CITATION.cff`** with authors, version, and repository URL.
-- Summarize the dataset for users in **`dataset_card.md`**.
+Current parsed sources include:
+
+- selected scientific PDFs for UiO-66-NH2, Cu-BTC/GO composites, and NPF-200;
+- MOFX-DB JSON records for a small hMOF batch;
+- NIST ISODB GitHub API mirror records for a Zr-fum hydrogen storage article.
+
+Full source metadata are listed in `specs/source_map.json`.
+
+## Reports
+
+The five practice reports are in `reports/`:
+
+1. `practice_01_record_and_schema.md`
+2. `practice_02_source_map.md`
+3. `practice_03_pdf_extraction.md`
+4. `practice_04_web_extraction.md`
+5. `practice_05_cleaning_publication.md`
+
+The project summary is in `reports/final_report.md`.
+
+## Authorship, license, and citation
+
+Author: Topalova Yaroslavna Romanovna.
+
+Dataset license: CC BY 4.0. See `LICENSE`.
+
+Citation metadata are provided in `CITATION.cff`.

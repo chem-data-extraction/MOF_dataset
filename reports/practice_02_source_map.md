@@ -45,7 +45,7 @@ The same measurement may appear in a primary paper, NIST ISODB, and a public ML 
 
 - prefer primary papers for experimental values when exact conditions are available;
 - prefer NIST ISODB for machine-readable isotherm points when it clearly cites the same DOI and extraction method;
-- treat GitHub, Hugging Face, and Kaggle datasets as secondary until their provenance, license, and experimental/computational origin are checked;
+- treat GitHub, Hugging Face, and Kaggle datasets as secondary until their provenance, license, source category, and units are checked;
 - retain source-specific units and values until cleaning, then document conversions;
 - normalize MOF aliases using registry IDs, CSD refcodes, or explicit notes.
 

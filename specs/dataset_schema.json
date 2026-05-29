@@ -2,7 +2,7 @@
   "schema_version": "0.2.0",
   "dataset_title": "MOF-based gas adsorption dataset",
   "record_unit": "One experimental gas adsorption measurement for one MOF material under one defined set of conditions.",
-  "normalization_note": "The primary table keeps the material descriptors required for analysis. If many measurements refer to the same MOF, these descriptors can later be normalized into a separate MOF materials table keyed by mof_id.",
+  "normalization_note": "The flat dataset keeps measurement and material fields together for compatibility. The publication layout also provides normalized tables: data/processed/mof_materials.csv and data/processed/adsorption_measurements.csv linked by mof_id.",
   "fields": [
     {
       "name": "record_id",

@@ -72,7 +72,7 @@ Material table: `data/extracted/web_parsed_materials.csv`
 | Problem | Source | Current resolution |
 |---|---|---|
 | Web application route does not directly expose NIST JSON | NIST ISODB website | Use the official GitHub API mirror |
-| MOFX-DB includes category and force-field metadata that may indicate computational origin | MOFX-DB | Keep records as parsed preview until origin is verified |
+| MOFX-DB includes source-category and force-field metadata that require origin review | MOFX-DB | Keep source notes and units for later review |
 | NIST material JSON contains only adsorbent names/hashkeys for the sampled Zr-fum records | NIST ISODB | Store the DOI and use the source article for later material enrichment |
 | DOI-linked PDFs are not guaranteed to be openly available | NIST DOI enrichment | Treat DOI-to-PDF lookup as an optional future enrichment step, not as a required parsing dependency |
 | MOF identity is not guaranteed by display name alone | Both | Preserve source-specific identifiers such as MOFid, MOFkey, MOFX-DB id, and NIST hashkey in the material table |

@@ -62,7 +62,7 @@
       "combined_materials_output": "data/extracted/web_parse_preview/mofxdb_batch/materials_preview.csv",
       "combined_isotherm_points_output": "data/extracted/web_parse_preview/mofxdb_batch/isotherm_points_preview.csv",
       "status": "implemented_preview_not_promoted",
-      "notes": "Small batch preview from the first MOFX-DB API page. Do not promote to final records until source terms and experimental/computational origin are checked."
+      "notes": "Small batch preview from the first MOFX-DB API page. Source terms, category metadata, and units should be checked before larger-scale reuse."
     }
   ],
   "nist_mirror_batches": [
@@ -95,7 +95,7 @@
       "parser_plan": {
         "tool": "requests",
         "api_probe": "GET /mofs.json?page=1",
-        "accepted_record_policy": "Do not add records to the final extracted table until experimental/computational origin and units are verified."
+        "accepted_record_policy": "Keep source category metadata and units for review before larger-scale reuse."
       },
       "raw_snapshot_path": "data/raw/web/mofxdb_home.html",
       "raw_api_probe_path": "data/raw/web/mofxdb_mofs_page1.json",

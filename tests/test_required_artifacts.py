@@ -1,4 +1,4 @@
-"""Tests for required template artifacts and core validation checks."""
+"""Tests for required MOF dataset artifacts and core validation checks."""
 
 from __future__ import annotations
 

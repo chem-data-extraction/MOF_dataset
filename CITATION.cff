@@ -1,18 +1,18 @@
 cff-version: 1.2.0
-title: "Aptamer–protein binding dataset"
+title: "MOF-based gas adsorption dataset"
 message: "If you use this dataset, please cite it as below."
 type: dataset
 authors:
-  - family-names: "Student"
-    given-names: "Name"
-    affiliation: "University / Course"
-repository-code: "https://github.com/example/aptamer-protein-binding-dataset"
-url: "https://github.com/example/aptamer-protein-binding-dataset"
+  - name: "Topalova Yaroslavna Romanovna"
+repository-code: "https://github.com/chem-data-extraction/MOF_dataset"
+url: "https://github.com/chem-data-extraction/MOF_dataset"
 version: 0.1.0
-date-released: 2026-05-22
+date-released: 2026-05-29
 keywords:
-  - aptamer
-  - protein binding
-  - affinity
-  - scientific data extraction
+  - metal-organic frameworks
+  - MOF
+  - gas adsorption
+  - adsorption isotherms
+  - materials informatics
+  - chemical data extraction
 license: CC-BY-4.0

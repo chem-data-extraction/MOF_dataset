@@ -1,40 +1,53 @@
-# Final report
+# Final Report
 
-> Summarize the completed project for instructors and future users. Update when you submit.
+## Project Summary
 
-## Project summary
+This project builds a structured dataset of gas adsorption measurements for metal-organic frameworks (MOFs). The dataset links adsorption capacity points with gas type, pressure, temperature, source provenance, and available MOF material descriptors.
 
-Template: Aptamer–protein binding dataset. Replace with your title, authors, and version.
+## Dataset Goal
 
-## Dataset goal
+The dataset supports exploratory analysis of how MOF composition and structure relate to gas adsorption capacity under defined measurement conditions.
 
-What scientific question does the dataset support? Who is the intended audience?
+## Sources
 
-## Source summary
+Current parsed sources include:
 
-Count of sources by group; key papers and databases; license overview.
+- three scientific PDF sources for UiO-66-NH2, Cu-BTC/GO composites, and NPF-200;
+- MOFX-DB JSON records for a small hMOF batch;
+- NIST ISODB GitHub API mirror records for Zr-fum hydrogen adsorption.
 
-## Extraction summary
+Full source metadata are documented in `specs/source_map.json`.
 
-PDF: methods, record count, main issues. Web: pages scraped, record count. Link to practice reports 3–4.
+## Extraction Summary
 
-## Cleaning and normalization summary
+PDF extraction produced 212 measurement records and 6 material records. Web/API extraction produced 329 measurement records and 13 material records. The final processed dataset contains 541 measurement records and 19 MOF material records.
 
-Pipeline steps applied; deduplication outcome; unit normalization examples.
+## Cleaning And Normalization
 
-## Validation summary
+The final dataset is built by joining parsed measurement rows with material descriptor rows. Units are preserved as reported and stored in explicit unit columns. Duplicate `record_id` values are removed during cleaning. Normalized outputs are:
 
-Result of `scripts/validate_project.py` and `pytest`. Outstanding warnings.
+- `data/processed/adsorption_measurements.csv`
+- `data/processed/mof_materials.csv`
+- `data/processed/dataset.csv`
+
+## Validation
+
+`scripts/validate_project.py` passes. The validation checks required files, schema alignment, unique record identifiers, valid source identifiers, and numeric capacity values.
 
 ## Limitations
 
-Coverage gaps, uncertain extractions, license restrictions, conflicting values.
+- Some PDF values come from figure digitization.
+- Some material descriptors are incomplete, especially for NIST ISODB records.
+- No automatic unit conversion is applied.
+- Upstream source licenses should be checked before reuse outside the course project.
 
-## Final artifacts
+## Final Artifacts
 
 | Artifact | Path |
-|----------|------|
-| Processed dataset | `data/processed/dataset.csv` |
+|---|---|
+| Flat dataset | `data/processed/dataset.csv` |
+| Measurement table | `data/processed/adsorption_measurements.csv` |
+| Material table | `data/processed/mof_materials.csv` |
 | Schema | `specs/dataset_schema.json` |
 | Source map | `specs/source_map.json` |
 | Dataset card | `dataset_card.md` |

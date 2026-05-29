@@ -201,12 +201,12 @@
           "scientific papers"
         ],
         "expected_conflicts": [
-          "computational/simulation records mixed with experimentally sourced literature metadata",
+          "source category metadata requires review before larger-scale reuse",
           "ambiguous unit labels in some isotherm objects",
           "MOF identity differs between display name, MOFid, MOFkey, and CIF content"
         ],
         "extraction_strategy": {
-          "recommended_method": "small API probes first; accept records only after experimental/computational origin, units, and license are verified"
+          "recommended_method": "small API probes first; keep records only with clear source category metadata, units, and license notes"
         },
         "notes": "Useful for testing web/API parsing and MOF identity fields; not yet accepted as final experimental data."
       },
@@ -333,7 +333,7 @@
         "expected_conflicts": [
           "unknown preprocessing",
           "missing DOI provenance",
-          "unclear experimental versus computational origin"
+          "unclear source category metadata"
         ],
         "extraction_strategy": {
           "recommended_method": "inspect candidate repositories individually; include only if license and provenance are clear"

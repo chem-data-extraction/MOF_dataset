@@ -1,8 +1,10 @@
 {
   "pipeline_version": "0.2.0",
   "inputs": [
-    "data/extracted/pdf_extracted_records.csv",
-    "data/extracted/web_extracted_records.csv"
+    "data/extracted/pdf_parsed_records.csv",
+    "data/extracted/pdf_parsed_materials.csv",
+    "data/extracted/web_parsed_records.csv",
+    "data/extracted/web_parsed_materials.csv"
   ],
   "outputs": [
     "data/processed/dataset.csv",
@@ -13,10 +15,12 @@
     {
       "step_id": "merge_sources",
       "operation": "concatenate",
-      "description": "Combine PDF- and web-extracted CSV files into a single interim table.",
+      "description": "Join parsed PDF and web measurement records with parsed MOF material descriptors.",
       "input_files": [
-        "data/extracted/pdf_extracted_records.csv",
-        "data/extracted/web_extracted_records.csv"
+        "data/extracted/pdf_parsed_records.csv",
+        "data/extracted/pdf_parsed_materials.csv",
+        "data/extracted/web_parsed_records.csv",
+        "data/extracted/web_parsed_materials.csv"
       ],
       "output_file": "data/interim/merged_records.csv"
     },

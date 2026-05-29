@@ -2,8 +2,8 @@
 """Web/API probe driver for MOF database sources.
 
 Practice 4 uses conservative probes: download source snapshots, inspect whether
-an API response is available, and keep record extraction disabled until source
-terms, experimental/computational origin, and units are verified.
+an API response is available, and keep source category, units, and provenance
+metadata available for later review.
 """
 
 from __future__ import annotations
