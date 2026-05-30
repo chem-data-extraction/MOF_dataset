@@ -60,5 +60,26 @@
     "temperature and pressure are present with units",
     "material descriptors are stored in data/extracted/web_parsed_materials.csv",
     "source_id matches specs/source_map.json"
+  ],
+  "output_records_file": "data/extracted/web_parsed_records.csv",
+  "input_pages": [
+    {
+      "source_id": "db_mofxdb",
+      "page_id": "mofxdb_page1_first10_with_isotherms",
+      "url": "https://mof.tech.northwestern.edu/mofs.json?page=1",
+      "access_date": "2026-05-28",
+      "expected_content": "MOFX-DB provides MOF structures, pore descriptors, and linked isotherm JSON records.",
+      "extraction_status": "parsed_into_extracted_csv",
+      "output_records_file": "data/extracted/web_parsed_records.csv"
+    },
+    {
+      "source_id": "db_nist_isodb",
+      "page_id": "nist_zr_fum_hydrogen_storage_example",
+      "url": "https://github.com/NIST-ISODB/isodb-library",
+      "access_date": "2026-05-28",
+      "expected_content": "NIST ISODB provides machine-readable experimental adsorption isotherms and DOI-linked provenance.",
+      "extraction_status": "parsed_into_extracted_csv",
+      "output_records_file": "data/extracted/web_parsed_records.csv"
+    }
   ]
 }

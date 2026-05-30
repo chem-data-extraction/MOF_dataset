@@ -22,6 +22,7 @@ One row in `data/processed/adsorption_measurements.csv` is one gas adsorption me
 |---|---:|---|
 | `data/processed/adsorption_measurements.csv` | 541 | measurement table |
 | `data/processed/mof_materials.csv` | 19 | MOF material table |
+| `data/processed/dataset.csv` | 541 | flat compatibility export |
 
 ## Data sources
 

@@ -14,6 +14,7 @@ MERGED_PATH = ROOT / "data/interim/merged_records.csv"
 SCHEMA_PATH = ROOT / "specs/dataset_schema.json"
 MOF_SCHEMA_PATH = ROOT / "specs/mof_materials_schema.json"
 MEASUREMENT_SCHEMA_PATH = ROOT / "specs/adsorption_measurements_schema.json"
+DATASET_PATH = ROOT / "data/processed/dataset.csv"
 MOF_TABLE_PATH = ROOT / "data/processed/mof_materials.csv"
 MEASUREMENT_TABLE_PATH = ROOT / "data/processed/adsorption_measurements.csv"
 
@@ -98,7 +99,10 @@ def main() -> None:
             df[col] = None
     df = df[columns]
     cleaned = clean_dataframe(df)
+    DATASET_PATH.parent.mkdir(parents=True, exist_ok=True)
+    cleaned.to_csv(DATASET_PATH, index=False)
     write_normalized_tables(cleaned)
+    print(f"Wrote {len(cleaned)} rows to {DATASET_PATH.relative_to(ROOT)}")
     print(f"Cleaned {len(cleaned)} merged rows")
 
 

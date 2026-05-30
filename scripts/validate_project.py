@@ -25,6 +25,7 @@ REQUIRED_FILES = [
     "data/extracted/pdf_parsed_records.csv",
     "data/extracted/web_parsed_materials.csv",
     "data/extracted/web_parsed_records.csv",
+    "data/processed/dataset.csv",
     "data/processed/mof_materials.csv",
     "data/processed/adsorption_measurements.csv",
     "scripts/build_dataset.py",
@@ -100,6 +101,10 @@ def load_measurements(root: Path = ROOT) -> pd.DataFrame:
     return pd.read_csv(root / "data/processed/adsorption_measurements.csv")
 
 
+def load_dataset(root: Path = ROOT) -> pd.DataFrame:
+    return pd.read_csv(root / "data/processed/dataset.csv")
+
+
 def check_columns(df: pd.DataFrame, schema: dict, label: str) -> list[str]:
     expected = schema_field_names(schema)
     actual = list(df.columns)
@@ -166,23 +171,30 @@ def validate(root: Path = ROOT) -> tuple[list[str], list[str]]:
 
     material_schema = load_json(root / "specs/mof_materials_schema.json")
     measurement_schema = load_json(root / "specs/adsorption_measurements_schema.json")
+    dataset_schema = load_json(root / "specs/dataset_schema.json")
     source_map = load_json(root / "specs/source_map.json")
+    dataset = load_dataset(root)
     materials = load_materials(root)
     measurements = load_measurements(root)
 
+    errors.extend(check_columns(dataset, dataset_schema, "dataset"))
     errors.extend(check_columns(materials, material_schema, "mof_materials"))
     errors.extend(check_columns(measurements, measurement_schema, "adsorption_measurements"))
+    errors.extend(check_unique_nonempty(dataset, "record_id", "dataset"))
     errors.extend(check_unique_nonempty(materials, "mof_id", "mof_materials"))
     errors.extend(check_unique_nonempty(measurements, "record_id", "adsorption_measurements"))
     errors.extend(check_measurement_links(measurements, materials))
     errors.extend(check_capacity_value(measurements))
 
+    dataset_errors, dataset_warnings = check_source_id(dataset, source_map, "dataset")
     material_errors, material_warnings = check_source_id(materials, source_map, "mof_materials")
     measurement_errors, measurement_warnings = check_source_id(
         measurements, source_map, "adsorption_measurements"
     )
+    errors.extend(dataset_errors)
     errors.extend(material_errors)
     errors.extend(measurement_errors)
+    warnings.extend(dataset_warnings)
     warnings.extend(material_warnings)
     warnings.extend(measurement_warnings)
 

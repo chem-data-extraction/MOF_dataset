@@ -16,12 +16,13 @@ One measurement record is one gas adsorption measurement for one MOF material un
 |---|---|
 | `data/processed/mof_materials.csv` | final material table, one row per MOF identity |
 | `data/processed/adsorption_measurements.csv` | final measurement table, one row per adsorption point |
+| `data/processed/dataset.csv` | flat compatibility export for validators and quick preview |
 | `data/extracted/pdf_parsed_records.csv` | parsed PDF measurement records |
 | `data/extracted/pdf_parsed_materials.csv` | parsed PDF material descriptors |
 | `data/extracted/web_parsed_records.csv` | parsed web/API measurement records |
 | `data/extracted/web_parsed_materials.csv` | parsed web/API material descriptors |
 
-The processed dataset currently contains 541 measurement records and 19 MOF material records. A single wide `dataset.csv` is not published because the normalized two-table design avoids repeated material descriptors and many empty columns.
+The processed dataset currently contains 541 measurement records and 19 MOF material records. The normalized tables are the main publication format; `dataset.csv` is kept as a compatibility export.
 
 ## Repository structure
 
@@ -56,7 +57,7 @@ py -3 -m pytest
 Notes:
 
 - `build_dataset.py` joins parsed PDF/web measurements with material descriptors and writes `data/interim/merged_records.csv`.
-- `clean_dataset.py` normalizes missing values, deduplicates records, and writes the two processed tables.
+- `clean_dataset.py` normalizes missing values, deduplicates records, and writes the flat compatibility export plus the two processed tables.
 - `validate_project.py` checks required files, schema alignment, unique identifiers, source identifiers, and numeric capacity values.
 - `extract_pdf.py` and `extract_web.py` document the extraction approach and can be extended for future source expansion; the current release uses the four committed parsed CSV files in `data/extracted/`.
 

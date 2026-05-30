@@ -46,9 +46,25 @@
       "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10645735/",
       "doi": "10.1038/s41598-023-47221-6",
       "publication_year": 2023,
-      "pages_used": [6, 7, 8],
+      "pages_used": [
+        6,
+        7,
+        8
+      ],
       "selection_reason": "Experimental CO2 adsorption capacity in UiO-66-NH2 with material characterization data.",
-      "extraction_methods": ["text_extraction", "table_review", "manual_visual_figure_digitization"]
+      "extraction_methods": [
+        "text_extraction",
+        "table_review",
+        "manual_visual_figure_digitization"
+      ],
+      "expected_content": [
+        "CO2 adsorption capacity",
+        "temperature",
+        "pressure",
+        "UiO-66-NH2 material descriptors",
+        "Figure 6 isotherm points"
+      ],
+      "extraction_status": "parsed_into_extracted_csv"
     },
     {
       "source_id": "paper_nanosized_cu_mofs_go_gas_storage",
@@ -57,9 +73,25 @@
       "source_url": "local user-provided PDF",
       "doi": "10.1039/c3ee23421e",
       "publication_year": 2013,
-      "pages_used": [4, 6, 7, 8],
+      "pages_used": [
+        4,
+        6,
+        7,
+        8
+      ],
       "selection_reason": "Contains Table 1 with Cu-BTC/GO surface area, pore volume, CO2 capacity, H2 capacity, and isotherm figures.",
-      "extraction_methods": ["manual_table_transcription", "manual_visual_figure_digitization"]
+      "extraction_methods": [
+        "manual_table_transcription",
+        "manual_visual_figure_digitization"
+      ],
+      "expected_content": [
+        "Cu-BTC/GO material descriptors",
+        "BET surface area",
+        "pore volume",
+        "CO2/H2 capacity values",
+        "isotherm figures"
+      ],
+      "extraction_status": "parsed_into_extracted_csv"
     },
     {
       "source_id": "paper_nihms_1670563",
@@ -68,9 +100,22 @@
       "source_url": "local user-provided PDF",
       "doi": "10.1002/adma.201907995",
       "publication_year": 2020,
-      "pages_used": [6, 12],
+      "pages_used": [
+        6,
+        12
+      ],
       "selection_reason": "Contains NPF-200 H2 total/excess adsorption and working-capacity values.",
-      "extraction_methods": ["text_extraction", "manual_visual_figure_digitization"]
+      "extraction_methods": [
+        "text_extraction",
+        "manual_visual_figure_digitization"
+      ],
+      "expected_content": [
+        "NPF-200 hydrogen adsorption",
+        "working capacity values",
+        "H2 isotherm points",
+        "pore volume"
+      ],
+      "extraction_status": "parsed_into_extracted_csv"
     }
   ],
   "quality_control": {
@@ -83,5 +128,6 @@
       "source_id matches specs/source_map.json",
       "page number or table/figure location is recorded in source_location"
     ]
-  }
+  },
+  "output_records_file": "data/extracted/pdf_parsed_records.csv"
 }

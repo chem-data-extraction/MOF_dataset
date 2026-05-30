@@ -1,5 +1,5 @@
 {
-  "pipeline_version": "0.3.0",
+  "pipeline_version": "0.3.1",
   "inputs": [
     "data/extracted/pdf_parsed_records.csv",
     "data/extracted/pdf_parsed_materials.csv",
@@ -8,7 +8,8 @@
   ],
   "outputs": [
     "data/processed/mof_materials.csv",
-    "data/processed/adsorption_measurements.csv"
+    "data/processed/adsorption_measurements.csv",
+    "data/processed/dataset.csv"
   ],
   "steps": [
     {
@@ -100,6 +101,15 @@
       "output_file": "data/interim/merged_records.csv"
     },
     {
+      "step_id": "export_flat_dataset",
+      "operation": "export",
+      "description": "Write a flat compatibility dataset for validators and simple preview use.",
+      "input_files": [
+        "data/interim/merged_records.csv"
+      ],
+      "output_file": "data/processed/dataset.csv"
+    },
+    {
       "step_id": "export_normalized_tables",
       "operation": "normalize_tables",
       "description": "Split merged records into a compact MOF material table and a compact adsorption measurement table keyed by mof_id.",
@@ -121,5 +131,6 @@
       ],
       "output_file": "reports/practice_05_cleaning_publication.md"
     }
-  ]
+  ],
+  "output": "data/processed/dataset.csv"
 }

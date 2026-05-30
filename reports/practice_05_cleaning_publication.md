@@ -19,8 +19,9 @@
 |---|---|---|
 | `data/processed/adsorption_measurements.csv` | one adsorption measurement point | gas, temperature, pressure, capacity, units, DOI/source |
 | `data/processed/mof_materials.csv` | one MOF material identity | name, formula, metal/linker, pore descriptors, surface area |
+| `data/processed/dataset.csv` | one adsorption measurement point with material fields repeated | flat compatibility export |
 
-The normalized two-table design is preferred because one MOF can have many measurements. A wide `dataset.csv` is not published because it would repeat material descriptors and introduce many empty columns.
+The normalized two-table design is preferred because one MOF can have many measurements. A wide `dataset.csv` is retained only for automatic validation and quick preview.
 
 ## Cleaning Steps
 
@@ -32,8 +33,9 @@ The normalized two-table design is preferred because one MOF can have many measu
 | 4 | Collapse source-specific locators into `source_location` and `extraction_method` |
 | 5 | Standardize missing values: empty string, `NA`, `N/A`, `null`, `nan`, `-` |
 | 6 | Deduplicate records by `record_id` |
-| 7 | Export normalized processed tables |
-| 8 | Validate schemas and source references |
+| 7 | Export flat compatibility dataset |
+| 8 | Export normalized processed tables |
+| 9 | Validate schemas and source references |
 
 ## Normalization Rules
 
@@ -71,9 +73,11 @@ Result: validation passed.
 |---|---:|---|
 | `data/processed/mof_materials.csv` | 19 | valid normalized material table |
 | `data/processed/adsorption_measurements.csv` | 541 | valid normalized measurement table |
+| `data/processed/dataset.csv` | 541 | valid flat compatibility export |
 
 ## Publication Readiness Checklist
 
+- [x] `dataset.csv` matches `specs/dataset_schema.json`
 - [x] `mof_materials.csv` matches `specs/mof_materials_schema.json`
 - [x] `adsorption_measurements.csv` matches `specs/adsorption_measurements_schema.json`
 - [x] PDF and web parsed outputs are separated

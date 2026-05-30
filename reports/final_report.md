@@ -30,8 +30,9 @@ Final normalized outputs:
 
 - `data/processed/adsorption_measurements.csv`
 - `data/processed/mof_materials.csv`
+- `data/processed/dataset.csv`
 
-A single flat `dataset.csv` is not included because the project uses a normalized two-table publication format.
+The normalized two-table layout is the main publication format. `dataset.csv` is retained as a flat compatibility export for validators and quick preview.
 
 ## Validation
 
@@ -50,6 +51,7 @@ A single flat `dataset.csv` is not included because the project uses a normalize
 |---|---|
 | Measurement table | `data/processed/adsorption_measurements.csv` |
 | Material table | `data/processed/mof_materials.csv` |
+| Flat compatibility dataset | `data/processed/dataset.csv` |
 | Measurement schema | `specs/adsorption_measurements_schema.json` |
 | Material schema | `specs/mof_materials_schema.json` |
 | Source map | `specs/source_map.json` |
